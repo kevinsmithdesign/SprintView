@@ -108,5 +108,64 @@ body {
     flex: 1;
     background: #f5f9fc;
     border-radius: 16px;
+    padding: 32px;
+    .calendar-title {
+      margin: 0 0 64px 0;
+      .calendar-forward-backward-btn {
+        background: #fff;
+        border-radius: 6px;
+        height: 32px;
+        width: 32px;
+        text-align: center;
+        line-height: 32px;
+        cursor: pointer;
+      }
+    }
   }
+  .date-container {
+    flex: 1;
+    .day {
+      color: #8b8e96;
+      font-size: 12px;
+      font-weight: bold;
+      text-align: center;
+      width: 38px;
+      margin-bottom: 6px;
+    }
+    .date {
+      font-size: 12px;
+      // background: #f44975;
+      height: 38px;
+      width: 38px;
+      border-radius: 50%;
+      color: #fff;
+      text-align: center;
+      line-height: 38px;
+    }
+    .active-color {
+      background: #f44975;
+    }
+    .not-active {
+      color: #000;
+    }
+  }
+  .date-container:last-child {
+    flex: 0;
+  }
+}
+
+.d-flex {
+  display: flex;
+}
+
+.flex-fill {
+  flex: 1;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.mr-4px {
+  margin-right: 4px;
 }
