@@ -1,7 +1,7 @@
 body {
   background: #b6baea;
   padding: 0;
-  margin: 0;
+  margin: 50px 0;
   font-family: helvetica;
 }
 
@@ -11,6 +11,25 @@ body {
   background: #fff;
   border-top-left-radius: 32px;
   border-top-right-radius: 32px;
+}
+
+.page-container-bottom {
+  max-width: 1440px;
+  margin: 0 auto;
+  background: #f5f9fc;
+  border-bottom-left-radius: 32px;
+  border-bottom-right-radius: 32px;
+  .assignment-card-grid {
+    display: flex;
+    margin: 0 72px;
+    .card-row {
+      flex: 1;
+      margin: 0 48px 0 0;
+    }
+    .card-row:last-child {
+      margin: 0;
+    }
+  }
 }
 
 .flex-fill {
@@ -70,6 +89,7 @@ body {
   display: flex;
   max-width: 100%;
   margin: 0 72px;
+  padding: 0 0 38px 0;
   background: #fff;
   .team-card {
     flex: 1;
@@ -168,4 +188,30 @@ body {
 
 .mr-4px {
   margin-right: 4px;
+}
+
+.assignment-card {
+  border-radius: 16px;
+  padding: 32px;
+  background: #fff;
+  margin: 8px 0 16px 0;
+  .pill {
+    padding: 4px 8px;
+    background: #eee;
+    height: 24px;
+    font-size: 12px;
+    line-height: 24px;
+    max-width: 60px;
+    border-radius: 24px;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  .card-title {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+  .user {
+    margin-bottom: 24px;
+  }
 }
