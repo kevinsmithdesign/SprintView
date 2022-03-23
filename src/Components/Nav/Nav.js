@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 const Nav = () => {
   return (
@@ -18,10 +19,22 @@ const Nav = () => {
           <input placeholder="Search" className="searchInput" />
         </div>
         <div className="nav-group">
-          <div className="nav-link">Overview</div>
-          <div className="nav-link active">Board</div>
+          <Link to="/" className="nav-link">
+            Overview
+          </Link>
+          <Link to="/board" className="nav-link">
+            Board
+          </Link>
+          <Link to="/backlog" className="nav-link">
+            Backlog
+          </Link>
+          <Link to="/analytics" className="nav-link">
+            Analytics
+          </Link>
+
+          {/* <div className="nav-link active">Board</div>
           <div className="nav-link">Backlog</div>
-          <div className="nav-link">Analytics</div>
+          <div className="nav-link">Analytics</div> */}
         </div>
         <div className="flex-fill"></div>
         <div className="settings">

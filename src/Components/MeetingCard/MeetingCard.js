@@ -21,7 +21,7 @@ const MeetingCard = () => {
 
   return (
     <div className="meeting-card">
-      <div>Stand up</div>
+      <div>Meetings</div>
       {meetings.map((meet) => (
         <div className="meet-card">
           <div className="card-icon-container">
