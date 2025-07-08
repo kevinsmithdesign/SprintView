@@ -1,0 +1,97 @@
+import React from "react";
+import { useLocation, Link } from "react-router";
+import SprintView from "../assets/images/SprintViewLogo";
+import {
+  Container,
+  Avatar,
+  Box,
+  Typography,
+  TextField,
+  useTheme,
+} from "@mui/material";
+import InputAdornment from "@mui/material/InputAdornment";
+import SearchIcon from "../assets/icons/SearchIcon";
+
+const Nav = () => {
+  const theme = useTheme();
+  const location = useLocation();
+
+  const navigationItems = [
+    { label: "Board", path: "/board" },
+    { label: "Calendar", path: "/calendar" },
+    { label: "Message", path: "/message" },
+    { label: "Analytics", path: "/analytics" },
+    { label: "AI Assistant", path: "/ai-assistant" },
+  ];
+
+  const getNavItemStyles = (path) => {
+    const isActive = location.pathname === path;
+
+    return {
+      fontWeight: "SemiBold",
+      p: "10px 18px",
+      borderRadius: "32px",
+      background: isActive ? theme.palette.primary.main : "transparent",
+      display: "inline-block",
+      cursor: "pointer",
+      color: isActive ? "white" : "black",
+      textDecoration: "none",
+      marginRight: "8px",
+      "&:hover": {
+        background: isActive ? theme.palette.primary.main : "#f6f6f6",
+        color: isActive ? "white" : "#000",
+      },
+    };
+  };
+
+  return (
+    <Container sx={{ background: "", mt: 4, mb: 4 }}>
+      <Box sx={{ display: "flex", alignItems: "center" }}>
+        <Box sx={{ mr: 6 }}>
+          <SprintView />
+        </Box>
+        <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <TextField
+            placeholder="Search"
+            id="outlined-start-adornment"
+            slotProps={{
+              input: {
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <SearchIcon />
+                  </InputAdornment>
+                ),
+              },
+            }}
+          />
+        </Box>
+
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            flexGrow: 1,
+            display: { xs: "none", md: "flex" },
+          }}
+        >
+          {navigationItems.map((item) => (
+            <Box
+              key={item.path}
+              component={Link}
+              to={item.path}
+              sx={getNavItemStyles(item.path)}
+            >
+              <Typography variant="body2">{item.label}</Typography>
+            </Box>
+          ))}
+        </Box>
+
+        <Box sx={{ marginLeft: "auto" }}>
+          <Avatar />
+        </Box>
+      </Box>
+    </Container>
+  );
+};
+
+export default Nav;
