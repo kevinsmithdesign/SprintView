@@ -9,35 +9,35 @@ import {
   LinearProgress,
   Button,
 } from "@mui/material";
-import PlanningIcon from "../assets/icons/PlanningIcon";
-import StandUpIcon from "../assets/icons/StandUpIcon";
-import RetroIcon from "../assets/icons/RetroIcon";
-import ArrowUpLeftIcon from "../assets/icons/ArrowUpLeftIcon";
 
-const TodaysMeetingsCard = ({ id, title, link, iconColor }) => {
+import AddIcon from "../assets/icons/AddIcon";
+import AddMeetingIcon from "../assets/icons/AddMeetingIcon";
+import FilterIcon from "../assets/icons/FilterIcon";
+
+const QuickActions = () => {
   const theme = useTheme();
 
   const meetings = [
     {
       id: 1,
-      title: "Stand up",
-      link: "https://teamcronus.meet",
-      iconColor: "#B6BAEA",
-      icon: <StandUpIcon />,
+      title: "Create Story",
+      link: "Create new user stories, bugs, or tasks",
+      iconColor: "#77B8A0",
+      icon: <AddIcon />,
     },
     {
       id: 2,
-      title: "Cronus Retro",
-      link: "https://teamcronus.meet",
-      iconColor: "#FCD98E",
-      icon: <RetroIcon />,
+      title: "Schedule Meeting",
+      link: "Book ad-hoc team discussions",
+      iconColor: "#F7946F",
+      icon: <AddMeetingIcon />,
     },
     {
       id: 3,
-      title: "Sprint Planning",
-      link: "https://teamcronus.meet",
-      iconColor: "#77B8A0",
-      icon: <PlanningIcon />,
+      title: "Filter Board",
+      link: "Apply filters to kanban view",
+      iconColor: "#FCD98E",
+      icon: <FilterIcon />,
     },
   ];
 
@@ -45,7 +45,7 @@ const TodaysMeetingsCard = ({ id, title, link, iconColor }) => {
     <Card>
       <Stack flexDirection="row" alignItems="center" mb={2}>
         <Stack flexGrow={1}>
-          <Typography fontWeight="bold">TODAY'S MEETINGS</Typography>
+          <Typography fontWeight="bold">QUICK ACTIONS</Typography>
         </Stack>
         <Box
           sx={{
@@ -53,17 +53,8 @@ const TodaysMeetingsCard = ({ id, title, link, iconColor }) => {
             width: "40px",
             background: "#fff",
             borderRadius: "50%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            cursor: "pointer",
-            "&:hover": {
-              background: theme.palette.primary.main,
-            },
           }}
-        >
-          <ArrowUpLeftIcon />
-        </Box>
+        ></Box>
       </Stack>
 
       {meetings.map((meeting) => (
@@ -108,4 +99,4 @@ const TodaysMeetingsCard = ({ id, title, link, iconColor }) => {
   );
 };
 
-export default TodaysMeetingsCard;
+export default QuickActions;

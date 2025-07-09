@@ -8,10 +8,22 @@ import {
   Typography,
   Stack,
   Avatar,
+  TextField,
+  InputAdornment,
+  IconButton,
+  useTheme,
 } from "@mui/material";
 import DocumentIcon from "../assets/icons/DocumentIcon";
+import AddDocIcon from "../assets/icons/AddDoc";
+import SearchIcon from "../assets/icons/SearchIcon";
+import SendMsgIcon from "../assets/icons/SendMsgIcon";
+import EmojiIcon from "../assets/icons/EmojiIcon";
+import MicIcon from "../assets/icons/MicIcon";
+import MessageLeftNav from "../components/MessageLeftNav";
 
 const MessagePage = () => {
+  const theme = useTheme();
+
   const notifications = [
     {
       id: 1,
@@ -99,13 +111,13 @@ const MessagePage = () => {
   return (
     <Container>
       <Grid container spacing={2}>
-        <Grid size={{ xs: 12, md: 3 }}>
-          <Card>
+        <Grid size={{ xs: 12, md: 3 }} sx={{ display: "flex" }}>
+          <Card sx={{ width: "100%" }}>
             <Typography fontWeight="bold" mb={1}>
               CHANNELS
             </Typography>
             <Box
-              sx={{ display: "flex", flexDirection: "column", gap: 1, mb: 4 }}
+              sx={{ display: "flex", flexDirection: "column", gap: 1.2, mb: 4 }}
             >
               {notifications.map((notification) => (
                 <Box
@@ -149,7 +161,7 @@ const MessagePage = () => {
             <Typography fontWeight="bold" mb={1}>
               DIRECT MESSAGES
             </Typography>
-            <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
+            <Box sx={{ display: "flex", flexDirection: "column", gap: 1.2 }}>
               {directMsg.map((notification) => (
                 <Box
                   key={notification.id}
@@ -190,11 +202,137 @@ const MessagePage = () => {
             </Box>
           </Card>
         </Grid>
-        <Grid size={{ xs: 12, md: 6 }}>
-          <Card>M</Card>
+        {/* <Grid size={{ xs: 12, md: 6 }} sx={{ display: "flex" }}>
+          <Card sx={{ width: "100%" }}>
+            <Box sx={{ display: "flex" }}>
+              <TextField
+                fullWidth
+                placeholder="Type a message"
+                variant="outlined"
+                //   value={message}
+                //   onChange={(e) => setMessage(e.target.value)}
+                sx={{
+                  // mb: 2,
+                  "& .MuiOutlinedInput-root": {
+                    paddingLeft: 0.8,
+                    paddingRight: 0.8,
+                  },
+                }}
+                slotProps={{
+                  input: {
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <AddDocIcon />
+                      </InputAdornment>
+                    ),
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <EmojiIcon />
+                        <SendMsgIcon />
+                      </InputAdornment>
+                    ),
+                  },
+                }}
+              />
+
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  background: theme.palette.primary.main,
+                  height: "42px",
+                  width: "46px",
+                  borderRadius: "8px",
+                  ml: 1,
+                  cursor: "pointer",
+                }}
+              >
+                <MicIcon />
+              </Box>
+            </Box>
+          </Card>
+        </Grid> */}
+
+        <Grid size={{ xs: 12, md: 6 }} sx={{ display: "flex" }}>
+          <Card
+            sx={{
+              width: "100%",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            {/* Chat messages area - this will take up available space */}
+            <Box
+              sx={{
+                flexGrow: 1,
+                p: 2, // Add some padding for the messages area
+                overflowY: "auto", // Allow scrolling if messages overflow
+              }}
+            >
+              {/* This is where your chat messages would go */}
+              <Typography variant="body2" color="text.secondary">
+                Chat messages will appear here...
+              </Typography>
+            </Box>
+
+            {/* Input area - this stays at the bottom */}
+            <Box
+              sx={
+                {
+                  // p: 2, // Padding around the input
+                }
+              }
+            >
+              <Box sx={{ display: "flex" }}>
+                <TextField
+                  fullWidth
+                  placeholder="Type a message"
+                  variant="outlined"
+                  sx={{
+                    "& .MuiOutlinedInput-root": {
+                      paddingLeft: 0.8,
+                      paddingRight: 0.8,
+                    },
+                  }}
+                  slotProps={{
+                    input: {
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <AddDocIcon />
+                        </InputAdornment>
+                      ),
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <EmojiIcon />
+                          <SendMsgIcon />
+                        </InputAdornment>
+                      ),
+                    },
+                  }}
+                />
+                {/* <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    background: theme.palette.primary.main,
+                    height: "42px",
+                    width: "46px",
+                    borderRadius: "8px",
+                    ml: 1,
+                    cursor: "pointer",
+                  }}
+                >
+                  <MicIcon />
+                </Box> */}
+              </Box>
+            </Box>
+          </Card>
         </Grid>
-        <Grid size={{ xs: 12, md: 3 }}>
-          <Card>
+
+        <Grid size={{ xs: 12, md: 3 }} sx={{ display: "flex" }}>
+          <Card sx={{ width: "100%" }}>
             <Typography fontWeight="bold" mb={1}>
               DOCUMENTS
             </Typography>

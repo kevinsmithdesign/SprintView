@@ -40,7 +40,7 @@ const CalendarSm = () => {
           sx={{
             height: "40px",
             width: "40px",
-            background: "#fff",
+            background: "",
             borderRadius: "50%",
           }}
         ></Box>
