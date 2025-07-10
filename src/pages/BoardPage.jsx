@@ -17,6 +17,7 @@ import TeamViewCard from "../components/TeamViewCard";
 import TodaysMeetingsCard from "../components/TodaysMeetingsCard";
 import CalendarSm from "../components/CalendarSm";
 import QuickActions from "../components/QuickActions";
+import TaskCard from "../components/TaskCard";
 
 const BoardPage = () => {
   const meetings = [
@@ -64,58 +65,92 @@ const BoardPage = () => {
           }}
         >
           <Container>
-            <Grid container spacing={4}>
+            <Grid container spacing={2}>
               <Grid size={{ xs: 12, md: 3 }}>
-                <Typography fontWeight="bold" mb={0.5}>
+                <Typography fontWeight="bold" mb={1.5}>
                   TODO
                 </Typography>
-                <Card sx={{ background: "#fff" }}>
-                  <Chip label="UI Design" sx={{ mb: 1 }} />
-                  <Typography fontWeight="bold" mb={1}>
-                    High Fidelity Checkout Mockups
-                  </Typography>
-                  <Avatar sx={{ mb: 2 }} />
-                  <Typography>2 Comments</Typography>
-                </Card>
+                <TaskCard
+                  title="High Fidelity Checkout Mockups"
+                  commentCount="2"
+                  label="UI Design"
+                  variant="ui-design"
+                />
+                <TaskCard
+                  title="High Fidelity Checkout Mockups"
+                  commentCount="2"
+                  label="UI Design"
+                  variant="ui-design"
+                />
+                <TaskCard
+                  title="High Fidelity Checkout Mockups"
+                  commentCount="2"
+                  label="UI Design"
+                  variant="ui-design"
+                />
               </Grid>
               <Grid size={{ xs: 12, md: 3 }}>
-                <Typography fontWeight="bold" mb={0.5}>
+                <Typography fontWeight="bold" mb={1.5}>
                   IN PROGRESS
                 </Typography>
-                <Card sx={{ background: "#fff" }}>
-                  <Chip label="UI Design" sx={{ mb: 1 }} />
-                  <Typography fontWeight="bold" mb={1}>
-                    High Fidelity Checkout Mockups
-                  </Typography>
-                  <Avatar sx={{ mb: 2 }} />
-                  <Typography>2 Comments</Typography>
-                </Card>
+                <TaskCard
+                  title="High Fidelity Checkout Mockups"
+                  commentCount="2"
+                  label="UX Design"
+                  variant="ux-design"
+                />
+                <TaskCard
+                  title="High Fidelity Checkout Mockups"
+                  commentCount="2"
+                  label="UI Design"
+                  variant="ui-design"
+                />
               </Grid>
               <Grid size={{ xs: 12, md: 3 }}>
-                <Typography fontWeight="bold" mb={0.5}>
+                <Typography fontWeight="bold" mb={1.5}>
                   REVIEW
                 </Typography>
-                <Card sx={{ background: "#fff" }}>
-                  <Chip label="UI Design" sx={{ mb: 1 }} />
-                  <Typography fontWeight="bold" mb={1}>
-                    High Fidelity Checkout Mockups
-                  </Typography>
-                  <Avatar sx={{ mb: 2 }} />
-                  <Typography>2 Comments</Typography>
-                </Card>
+                <TaskCard
+                  title="High Fidelity Checkout Mockups"
+                  commentCount="2"
+                  label="Front-End"
+                  variant="front-end"
+                />
+                <TaskCard
+                  title="High Fidelity Checkout Mockups"
+                  commentCount="2"
+                  label="UI Design"
+                  variant="ui-design"
+                />
+                <TaskCard
+                  title="High Fidelity Checkout Mockups"
+                  commentCount="2"
+                  label="UI Design"
+                  variant="ui-design"
+                />
               </Grid>
               <Grid size={{ xs: 12, md: 3 }}>
-                <Typography fontWeight="bold" mb={0.5}>
+                <Typography fontWeight="bold" mb={1.5}>
                   DONE
                 </Typography>
-                <Card sx={{ background: "#fff" }}>
-                  <Chip label="UI Design" sx={{ mb: 1 }} />
-                  <Typography fontWeight="bold" mb={1}>
-                    High Fidelity Checkout Mockups
-                  </Typography>
-                  <Avatar sx={{ mb: 2 }} />
-                  <Typography>2 Comments</Typography>
-                </Card>
+                <TaskCard
+                  title="High Fidelity Checkout Mockups"
+                  commentCount="2"
+                  label="Back-End"
+                  variant="back-end"
+                />
+                <TaskCard
+                  title="High Fidelity Checkout Mockups"
+                  commentCount="2"
+                  label="UI Design"
+                  variant="ui-design"
+                />
+                <TaskCard
+                  title="High Fidelity Checkout Mockups"
+                  commentCount="2"
+                  label="UI Design"
+                  variant="ui-design"
+                />
               </Grid>
             </Grid>
           </Container>

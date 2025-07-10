@@ -173,10 +173,41 @@ const theme = createTheme({
       },
     },
     MuiChip: {
+      variants: [
+        {
+          props: { variant: "back-end" },
+          style: {
+            background: "#E5E7FF",
+            color: "#7B80B7",
+          },
+        },
+        {
+          props: { variant: "ui-design" },
+          style: {
+            background: "#CBEADE",
+            color: "#5F9782",
+          },
+        },
+        {
+          props: { variant: "ux-design" },
+          style: {
+            background: "#FDEAE2",
+            color: "#F7946F",
+          },
+        },
+        {
+          props: { variant: "front-end" },
+          style: {
+            background: "#DCE9FF",
+            color: "#5681C6",
+          },
+        },
+      ],
       styleOverrides: {
         root: {
           borderRadius: "16px",
-          fontWeight: 500,
+          fontSize: "12px",
+          fontWeight: "bold",
         },
       },
     },

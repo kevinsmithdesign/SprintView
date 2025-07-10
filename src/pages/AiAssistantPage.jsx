@@ -45,7 +45,7 @@ const AiAssistantPage = () => {
   return (
     <Container>
       <Grid container spacing={2}>
-        <Grid size={{ xs: 12, md: 4 }} sx={{ display: "flex" }}>
+        <Grid size={{ xs: 12, md: 3 }} sx={{ display: "flex" }}>
           <Card sx={{ width: "100%" }}>
             <Typography fontWeight="bold" mb={1}>
               RECENT CONVERSATIONS
@@ -101,7 +101,7 @@ const AiAssistantPage = () => {
           </Card>
         </Grid>
 
-        <Grid size={{ xs: 12, md: 8 }} sx={{ display: "flex" }}>
+        <Grid size={{ xs: 12, md: 6 }} sx={{ display: "flex" }}>
           <Card
             sx={{
               width: "100%",
@@ -176,6 +176,9 @@ const AiAssistantPage = () => {
               </Box>
             </Box>
           </Card>
+        </Grid>
+        <Grid size={{ xs: 12, md: 3 }}>
+          <Card>asdf</Card>
         </Grid>
       </Grid>
     </Container>

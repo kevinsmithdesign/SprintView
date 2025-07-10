@@ -13,6 +13,7 @@ import {
 import AddIcon from "../assets/icons/AddIcon";
 import AddMeetingIcon from "../assets/icons/AddMeetingIcon";
 import FilterIcon from "../assets/icons/FilterIcon";
+import ArrowUpLeftIcon from "../assets/icons/ArrowUpLeftIcon";
 
 const QuickActions = () => {
   const theme = useTheme();
@@ -53,8 +54,17 @@ const QuickActions = () => {
             width: "40px",
             background: "#fff",
             borderRadius: "50%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            cursor: "pointer",
+            "&:hover": {
+              background: "#ddd",
+            },
           }}
-        ></Box>
+        >
+          <ArrowUpLeftIcon />
+        </Box>
       </Stack>
 
       {meetings.map((meeting) => (

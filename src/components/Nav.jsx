@@ -68,7 +68,6 @@ const Nav = () => {
 
         <Box
           sx={{
-            display: "flex",
             alignItems: "center",
             flexGrow: 1,
             display: { xs: "none", md: "flex" },

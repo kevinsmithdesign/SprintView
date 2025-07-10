@@ -58,7 +58,7 @@ const TodaysMeetingsCard = ({ id, title, link, iconColor }) => {
             justifyContent: "center",
             cursor: "pointer",
             "&:hover": {
-              background: theme.palette.primary.main,
+              background: "#ddd",
             },
           }}
         >
