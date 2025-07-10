@@ -22,7 +22,7 @@ const QuickActions = () => {
     {
       id: 1,
       title: "Create Story",
-      link: "Create new user stories, bugs, or tasks",
+      link: "Create new stories, bugs, or tasks",
       iconColor: "#77B8A0",
       icon: <AddIcon />,
     },

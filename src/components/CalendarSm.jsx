@@ -10,6 +10,9 @@ import {
   useTheme,
 } from "@mui/material";
 
+import LeftIcon from "../assets/icons/LeftIcon";
+import RightIcon from "../assets/icons/RightIcon";
+
 const CalendarSm = () => {
   const theme = useTheme();
   const [selectedDate, setSelectedDate] = useState(15); // Default to Wednesday (15th)
@@ -43,16 +46,34 @@ const CalendarSm = () => {
             background: "#fff",
             borderRadius: "50%",
             mr: 0.5,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            cursor: "pointer",
+            "&:hover": {
+              background: "#ddd",
+            },
           }}
-        />
+        >
+          <LeftIcon />
+        </Box>
         <Box
           sx={{
             height: "40px",
             width: "40px",
             background: "#fff",
             borderRadius: "50%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            cursor: "pointer",
+            "&:hover": {
+              background: "#ddd",
+            },
           }}
-        />
+        >
+          <RightIcon />
+        </Box>
       </Stack>
 
       <Box
