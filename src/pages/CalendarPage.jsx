@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import TodaysMeetingsCard from "../components/TodaysMeetingsCard";
 import CalendarSm from "../components/CalendarSm";
+import CalendarLg from "../components/CalendarLg";
 
 const CalendarPage = () => {
   return (
@@ -21,7 +22,9 @@ const CalendarPage = () => {
           </Box>
           <TodaysMeetingsCard />
         </Grid>
-        <Grid size={{ xs: 12, md: 8 }}>future calendar</Grid>
+        <Grid size={{ xs: 12, md: 8 }}>
+          <CalendarLg />
+        </Grid>
       </Grid>
     </Container>
   );

@@ -80,7 +80,9 @@ const Nav = () => {
               to={item.path}
               sx={getNavItemStyles(item.path)}
             >
-              <Typography variant="body2">{item.label}</Typography>
+              <Typography variant="body2" fontWeight="bold">
+                {item.label}
+              </Typography>
             </Box>
           ))}
         </Box>

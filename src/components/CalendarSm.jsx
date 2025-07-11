@@ -1,123 +1,113 @@
 import React, { useState } from "react";
-import {
-  Container,
-  Card,
-  Stack,
-  Avatar,
-  Box,
-  Typography,
-  TextField,
-  useTheme,
-} from "@mui/material";
+import { Card, Stack, Box, Typography, useTheme } from "@mui/material";
 
 import LeftIcon from "../assets/icons/LeftIcon";
 import RightIcon from "../assets/icons/RightIcon";
-
+import ClockIcon from "../assets/icons/ClockIcon";
 const CalendarSm = () => {
   const theme = useTheme();
-  const [selectedDate, setSelectedDate] = useState(15); // Default to Wednesday (15th)
+  const [selectedDate, setSelectedDate] = useState(16); // default to 16th
 
-  const days = [
-    { name: "MON", date: 13 },
-    { name: "TUES", date: 14 },
-    { name: "WED", date: 15 },
-    { name: "THUR", date: 16 },
-    { name: "FRI", date: 17 },
-    { name: "SAT", date: 18 },
-    { name: "SUN", date: 19 },
-  ];
+  const daysOfWeek = ["MON", "TUES", "WED", "THUR", "FRI", "SAT", "SUN"];
+
+  // Example: June 2025 starts on Sunday → we'll align accordingly.
+  const monthDays = Array.from({ length: 30 }, (_, i) => i + 1);
+  const firstDayOffset = 0; // Adjust if June starts on a different weekday
 
   const handleDateClick = (date) => {
     setSelectedDate(date);
-    // Here you can add logic to update page data based on selected date
     console.log(`Selected date: ${date}`);
   };
 
   return (
-    <Card>
-      <Stack flexDirection="row" alignItems="center" mb={2}>
-        <Stack flexGrow={1}>
-          <Typography fontWeight="bold">JUNE 2025</Typography>
-        </Stack>
-        <Box
-          sx={{
-            height: "40px",
-            width: "40px",
-            background: "#fff",
-            borderRadius: "50%",
-            mr: 0.5,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            cursor: "pointer",
-            "&:hover": {
-              background: "#ddd",
-            },
-          }}
-        >
-          <LeftIcon />
-        </Box>
-        <Box
-          sx={{
-            height: "40px",
-            width: "40px",
-            background: "#fff",
-            borderRadius: "50%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            cursor: "pointer",
-            "&:hover": {
-              background: "#ddd",
-            },
-          }}
-        >
-          <RightIcon />
-        </Box>
-      </Stack>
-
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          width: "100%",
-        }}
-      >
-        {days.map((day, index) => (
+    <Card sx={{ p: 0 }}>
+      <Box sx={{ background: "", p: "32px 32px 8px 32px" }}>
+        <Stack direction="row" alignItems="center" mb={2}>
+          <Typography fontWeight="bold" flexGrow={1}>
+            JUNE 2025
+          </Typography>
           <Box
-            key={day.name}
             sx={{
+              height: "40px",
+              width: "40px",
+              background: "#fff",
+              borderRadius: "50%",
+              mr: 0.5,
               display: "flex",
-              flexDirection: "column",
               alignItems: "center",
-              textAlign: "center",
-              ...(index === 0 && { alignSelf: "flex-start" }),
-              ...(index === days.length - 1 && { alignSelf: "flex-end" }),
+              justifyContent: "center",
+              cursor: "pointer",
+              "&:hover": { background: "#ddd" },
             }}
           >
-            <Typography sx={{ fontSize: "12px" }} fontWeight="bold" mb={1}>
-              {day.name}
+            <LeftIcon />
+          </Box>
+          <Box
+            sx={{
+              height: "40px",
+              width: "40px",
+              background: "#fff",
+              borderRadius: "50%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+              "&:hover": { background: "#ddd" },
+            }}
+          >
+            <RightIcon />
+          </Box>
+        </Stack>
+
+        {/* Day names */}
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: "repeat(7, 1fr)",
+            textAlign: "center",
+            mb: 1,
+          }}
+        >
+          {daysOfWeek.map((day) => (
+            <Typography key={day} fontWeight="bold" fontSize="12px">
+              {day}
             </Typography>
+          ))}
+        </Box>
+
+        {/* Dates grid */}
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: "repeat(7, 1fr)",
+            gap: 1,
+          }}
+        >
+          {/* Add empty boxes for offset if the month doesn’t start on Monday */}
+          {Array.from({ length: firstDayOffset }).map((_, i) => (
+            <Box key={`offset-${i}`} />
+          ))}
+
+          {monthDays.map((date) => (
             <Box
-              onClick={() => handleDateClick(day.date)}
+              key={date}
+              onClick={() => handleDateClick(date)}
               sx={{
                 background:
-                  selectedDate === day.date
+                  selectedDate === date
                     ? theme.palette.primary.main
                     : "transparent",
+                borderRadius: "50%",
+                height: 40,
+                width: 40,
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                width: "40px",
-                height: "40px",
-                borderRadius: "50%",
-                textAlign: "center",
                 cursor: "pointer",
-                transition: "all 0.2s ease",
+                margin: "0 auto",
                 "&:hover": {
                   backgroundColor:
-                    selectedDate === day.date
+                    selectedDate === date
                       ? theme.palette.primary.dark
                       : theme.palette.action.hover,
                 },
@@ -126,15 +116,26 @@ const CalendarSm = () => {
               <Typography
                 variant="body2"
                 sx={{
-                  color: selectedDate === day.date ? "#fff" : "#000",
-                  fontWeight: selectedDate === day.date ? "bold" : "normal",
+                  color: selectedDate === date ? "#fff" : "#000",
+                  fontWeight: selectedDate === date ? "bold" : "normal",
                 }}
               >
-                {day.date}
+                {date}
               </Typography>
             </Box>
-          </Box>
-        ))}
+          ))}
+        </Box>
+      </Box>
+
+      {/* Optional footer */}
+      <Box sx={{ background: "#EFF3FA", py: 1.5, px: 4, display: "flex" }}>
+        <ClockIcon />
+        <Typography
+          variant="body2"
+          sx={{ display: "flex", alignItems: "center", ml: 0.5 }}
+        >
+          3 Days left in the sprint
+        </Typography>{" "}
       </Box>
     </Card>
   );
