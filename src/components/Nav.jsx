@@ -12,6 +12,8 @@ import {
 import InputAdornment from "@mui/material/InputAdornment";
 import SearchIcon from "../assets/icons/SearchIcon";
 
+import User2 from "../assets/images/Users/User2.jpg";
+
 const Nav = () => {
   const theme = useTheme();
   const location = useLocation();
@@ -88,7 +90,9 @@ const Nav = () => {
         </Box>
 
         <Box sx={{ marginLeft: "auto" }}>
-          <Avatar />
+          <Avatar>
+            <img src={User2} alt="user profile img" height="40px" />
+          </Avatar>
         </Box>
       </Box>
     </Container>

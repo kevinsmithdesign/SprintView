@@ -13,7 +13,7 @@ const DropdownIcon = () => {
       <path
         d="M16 10L12 14L8 10"
         stroke="#000000"
-        stroke-width="1.5"
+        stroke-width="1.8"
         stroke-linecap="round"
         stroke-linejoin="round"
       ></path>

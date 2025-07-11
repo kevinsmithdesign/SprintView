@@ -13,6 +13,7 @@ import PlanningIcon from "../assets/icons/PlanningIcon";
 import StandUpIcon from "../assets/icons/StandUpIcon";
 import RetroIcon from "../assets/icons/RetroIcon";
 import ArrowUpLeftIcon from "../assets/icons/ArrowUpLeftIcon";
+import ChevronRightIcon from "../assets/icons/ChevronRight";
 
 const TodaysMeetingsCard = ({ id, title, link, iconColor }) => {
   const theme = useTheme();
@@ -21,21 +22,21 @@ const TodaysMeetingsCard = ({ id, title, link, iconColor }) => {
     {
       id: 1,
       title: "Stand up",
-      link: "https://teamcronus.meet",
+      time: "9:30 A.M.",
       iconColor: "#B6BAEA",
       icon: <StandUpIcon />,
     },
     {
       id: 2,
       title: "Cronus Retro",
-      link: "https://teamcronus.meet",
+      time: "9:45 A.M.",
       iconColor: "#FCD98E",
       icon: <RetroIcon />,
     },
     {
       id: 3,
       title: "Sprint Planning",
-      link: "https://teamcronus.meet",
+      time: "2:00 P.M.",
       iconColor: "#77B8A0",
       icon: <PlanningIcon />,
     },
@@ -70,11 +71,27 @@ const TodaysMeetingsCard = ({ id, title, link, iconColor }) => {
         <Card
           key={meeting.id}
           sx={{
+            position: "relative",
             background: "#fff",
             p: 2,
             borderRadius: "12px",
             mb: 0.5,
             cursor: "pointer",
+            overflow: "hidden",
+            "&::after": {
+              content: '""',
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              backgroundColor: theme.palette.primary.main,
+              opacity: 0,
+              transition: "opacity 0.3s ease",
+            },
+            "&:hover::after": {
+              opacity: 0.2, // adjust to your desired overlay strength
+            },
           }}
         >
           <Stack flexDirection="row" gap={2}>
@@ -93,13 +110,20 @@ const TodaysMeetingsCard = ({ id, title, link, iconColor }) => {
                 {meeting.icon}
               </Box>
             </Stack>
-            <Stack>
+            <Stack flexGrow={1}>
               <Typography variant="body2" fontWeight="bold">
                 {meeting.title}
               </Typography>
-              <Typography variant="body2" color={theme.palette.primary.main}>
-                {meeting.link}
+              <Typography
+                variant="body2"
+                sx={{ fontSize: "12px" }}
+                color={theme.palette.secondary.main}
+              >
+                {meeting.time}
               </Typography>
+            </Stack>
+            <Stack justifyContent="center">
+              <ChevronRightIcon />
             </Stack>
           </Stack>
         </Card>

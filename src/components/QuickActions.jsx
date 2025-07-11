@@ -14,6 +14,8 @@ import AddIcon from "../assets/icons/AddIcon";
 import AddMeetingIcon from "../assets/icons/AddMeetingIcon";
 import FilterIcon from "../assets/icons/FilterIcon";
 import ArrowUpLeftIcon from "../assets/icons/ArrowUpLeftIcon";
+import DropdownIcon from "../assets/icons/DropdownIcon";
+import ChevronRightIcon from "../assets/icons/ChevronRight";
 
 const QuickActions = () => {
   const theme = useTheme();
@@ -22,21 +24,21 @@ const QuickActions = () => {
     {
       id: 1,
       title: "Create Story",
-      link: "Create new stories, bugs, or tasks",
+      link: "",
       iconColor: "#77B8A0",
       icon: <AddIcon />,
     },
     {
       id: 2,
       title: "Schedule Meeting",
-      link: "Book ad-hoc team discussions",
+      link: "",
       iconColor: "#F7946F",
       icon: <AddMeetingIcon />,
     },
     {
       id: 3,
       title: "Filter Board",
-      link: "Apply filters to kanban view",
+      link: "",
       iconColor: "#FCD98E",
       icon: <FilterIcon />,
     },
@@ -63,7 +65,7 @@ const QuickActions = () => {
             },
           }}
         >
-          <ArrowUpLeftIcon />
+          <DropdownIcon />
         </Box>
       </Stack>
 
@@ -71,11 +73,27 @@ const QuickActions = () => {
         <Card
           key={meeting.id}
           sx={{
+            position: "relative",
             background: "#fff",
             p: 2,
             borderRadius: "12px",
             mb: 0.5,
             cursor: "pointer",
+            overflow: "hidden",
+            "&::after": {
+              content: '""',
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              backgroundColor: theme.palette.primary.main,
+              opacity: 0,
+              transition: "opacity 0.3s ease",
+            },
+            "&:hover::after": {
+              opacity: 0.2, // adjust to your desired overlay strength
+            },
           }}
         >
           <Stack flexDirection="row" gap={2}>
@@ -94,13 +112,17 @@ const QuickActions = () => {
                 {meeting.icon}
               </Box>
             </Stack>
-            <Stack>
+            <Stack flexGrow={1} justifyContent="center">
               <Typography variant="body2" fontWeight="bold">
                 {meeting.title}
               </Typography>
+
               <Typography variant="body2" color={theme.palette.primary.main}>
                 {meeting.link}
               </Typography>
+            </Stack>
+            <Stack justifyContent="center">
+              <ChevronRightIcon />
             </Stack>
           </Stack>
         </Card>

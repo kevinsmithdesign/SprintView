@@ -1,4 +1,5 @@
 import { createTheme } from "@mui/material/styles";
+import ProfileIcon from "./assets/icons/ProfileIcon";
 
 const theme = createTheme({
   palette: {
@@ -169,6 +170,30 @@ const theme = createTheme({
           boxShadow: "none",
           padding: "32px",
           background: "#F5F9FC",
+        },
+      },
+    },
+    MuiLinearProgress: {
+      styleOverrides: {
+        root: {
+          height: 8,
+          borderRadius: 6,
+          background: "#E6E9ED",
+        },
+        bar: {
+          borderRadius: 6,
+          backgroundColor: "#77B8A0",
+        },
+      },
+    },
+    MuiAvatar: {
+      styleOverrides: {
+        root: {
+          width: 40, // default width
+          height: 40, // default height
+          fontSize: 20, // affects icon/text inside
+          backgroundColor: "#E6E9ED",
+          cursor: "pointer",
         },
       },
     },
