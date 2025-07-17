@@ -20,7 +20,6 @@ export default function CalendarGrid() {
         display: "grid",
         gridTemplateColumns: "100px repeat(5, 1fr)",
         gridTemplateRows: "100px repeat(6, 100px)",
-        // border: "1px solid #E6E9ED",
         borderRadius: "12px",
         overflow: "hidden",
         bgcolor: "#F5F9FC",
@@ -30,12 +29,12 @@ export default function CalendarGrid() {
       <Box sx={{ borderRight: "1px solid #E6E9ED" }} />
 
       {/* Header days */}
-      {days.map((day) => (
+      {days.map((day, index) => (
         <Box
           key={day.name}
           sx={{
-            borderRight: "1px solid #E6E9ED",
-            // borderBottom: "1px solid #e0e0e0",
+            borderRight:
+              index !== days.length - 1 ? "1px solid #E6E9ED" : "none",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -76,12 +75,13 @@ export default function CalendarGrid() {
           </Box>
 
           {/* Cells */}
-          {days.map((day) => (
+          {days.map((day, index) => (
             <Box
               key={day.name + time}
               sx={{
                 borderTop: "1px solid #E6E9ED",
-                borderRight: "1px solid #E6E9ED",
+                borderRight:
+                  index !== days.length - 1 ? "1px solid #E6E9ED" : "none",
                 bgcolor: "#F5F9FC",
                 // "&:hover": {
                 //   bgcolor: "#eaeaea",

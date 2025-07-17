@@ -39,7 +39,21 @@ const AiAssistantPage = () => {
   const recentConvo = [
     { id: 1, name: "Sprint Progress Analysis" },
     { id: 2, name: "Team Velocity Insights" },
-    { id: 3, name: "Database Schema.sql" },
+    { id: 4, name: "Retrospective Action Items" },
+    { id: 5, name: "API Documentation Review" },
+    { id: 6, name: "User Story Refinement" },
+    { id: 7, name: "Bug Triage Meeting Notes" },
+    { id: 8, name: "Sprint Planning Estimates" },
+    { id: 11, name: "Testing Strategy Discussion" },
+    { id: 12, name: "Performance Optimization" },
+    { id: 13, name: "Client Feedback Analysis" },
+    { id: 14, name: "Feature Flag Configuration" },
+    { id: 15, name: "Daily Standup Summary" },
+    // { id: 16, name: "Sprint Goals Alignment" },
+    // { id: 17, name: "Technical Debt Review" },
+    // { id: 18, name: "QA Test Case Updates" },
+    // { id: 19, name: "Sprint Demo Preparation" },
+    // { id: 20, name: "Capacity Planning Discussion" },
   ];
 
   return (
@@ -66,31 +80,6 @@ const AiAssistantPage = () => {
                     <Stack sx={{ pr: 1 }}>
                       <DocumentIcon />
                     </Stack>
-                    <Stack>
-                      <Typography variant="body2">{document.name}</Typography>
-                    </Stack>
-                  </Stack>
-                </Card>
-              ))}
-            </Box>
-
-            <Box>
-              <Typography fontWeight="bold" mb={1}>
-                QUICK ACTIONS
-              </Typography>
-              {quickActions.map((document) => (
-                <Card
-                  key={document.id}
-                  sx={{
-                    p: 1.5,
-                    background: "#fff",
-                    borderRadius: "6px",
-                    borderLeft: "6px solid #ddd",
-                    mb: 0.6,
-                  }}
-                >
-                  <Stack flexDirection="row" alignItems="center">
-                    <Stack sx={{ pr: 1 }}>{document.icon}</Stack>
                     <Stack>
                       <Typography variant="body2">{document.name}</Typography>
                     </Stack>
@@ -178,7 +167,32 @@ const AiAssistantPage = () => {
           </Card>
         </Grid>
         <Grid size={{ xs: 12, md: 3 }}>
-          <Card>asdf</Card>
+          <Card>
+            <Box>
+              <Typography fontWeight="bold" mb={1}>
+                QUICK ACTIONS
+              </Typography>
+              {quickActions.map((document) => (
+                <Card
+                  key={document.id}
+                  sx={{
+                    p: 1.5,
+                    background: "#fff",
+                    borderRadius: "6px",
+                    borderLeft: "6px solid #ddd",
+                    mb: 0.6,
+                  }}
+                >
+                  <Stack flexDirection="row" alignItems="center">
+                    <Stack sx={{ pr: 1 }}>{document.icon}</Stack>
+                    <Stack>
+                      <Typography variant="body2">{document.name}</Typography>
+                    </Stack>
+                  </Stack>
+                </Card>
+              ))}
+            </Box>
+          </Card>
         </Grid>
       </Grid>
     </Container>

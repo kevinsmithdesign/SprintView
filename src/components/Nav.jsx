@@ -65,6 +65,14 @@ const Nav = () => {
                 ),
               },
             }}
+            sx={{
+              "& .MuiInputBase-input": {
+                paddingLeft: 0, // remove default left padding
+              },
+              "& .MuiInputAdornment-root": {
+                marginRight: 1, // remove adornment right margin
+              },
+            }}
           />
         </Box>
 

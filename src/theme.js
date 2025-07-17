@@ -125,7 +125,26 @@ const theme = createTheme({
           },
           "& .MuiOutlinedInput-input": {
             padding: "10px 10px",
+            fontSize: "14px",
           },
+        },
+      },
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          "& .MuiOutlinedInput-notchedOutline": {
+            borderColor: "#eee", // your custom border color
+          },
+          "&:hover .MuiOutlinedInput-notchedOutline": {
+            borderColor: "#B6BAEA", // border on hover
+          },
+          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+            borderColor: "#4971F4", // border when focused
+          },
+        },
+        input: {
+          // optional: customize text padding, font, etc.
         },
       },
     },

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router";
 
-import { Container } from "@mui/material";
+import { Container, Box, Typography, useTheme } from "@mui/material";
 import Nav from "./components/Nav";
 
 import "./App.css";
@@ -13,9 +13,22 @@ import AnalyticsPage from "./pages/AnalyticsPage";
 import AiAssistantPage from "./pages/AiAssistantPage";
 
 function App() {
+  const theme = useTheme();
+
   return (
     <>
       <Router>
+        <Box
+          sx={{ background: theme.palette.primary.main, p: 2, color: "White" }}
+        >
+          <Container>
+            <Typography>
+              <b>Work in Progress:</b> This prototype is actively being
+              developed and updated weekly. Features may be incomplete or
+              subject to change based on user feedback.
+            </Typography>
+          </Container>
+        </Box>
         <Nav />
 
         <Routes>
