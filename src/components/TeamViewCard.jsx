@@ -8,6 +8,7 @@ import {
   Avatar,
   LinearProgress,
   Button,
+  Grid,
 } from "@mui/material";
 import DropdownIcon from "../assets/icons/DropdownIcon";
 import User1 from "../assets/images/Users/User1.jpg";
@@ -21,30 +22,11 @@ const TeamViewCard = () => {
   const theme = useTheme();
 
   return (
-    <Card>
-      <Stack flexDirection="row" alignItems="center" mb={1}>
-        <Stack flexGrow={1}>
-          <Typography fontWeight="bold">TEAM</Typography>
-        </Stack>
-        <Box
-          sx={{
-            height: "40px",
-            width: "40px",
-            background: "#fff",
-            borderRadius: "50%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            cursor: "point",
-            "&:hover": {
-              background: "#ddd",
-              cursor: "pointer",
-            },
-          }}
-        >
-          <DropdownIcon />
-        </Box>
-      </Stack>
+    <Card sx={{ background: "#fff" }}>
+      <Typography fontWeight="bold" mb={1.5}>
+        TEAM
+      </Typography>
+
       <Typography variant="h4" fontWeight="600">
         Cronus
       </Typography>
@@ -79,7 +61,7 @@ const TeamViewCard = () => {
       </Stack>
 
       <LinearProgress variant="determinate" value="80" sx={{ mb: 1 }} />
-      <Typography variant="body2" fontWeight="bold" mb={2}>
+      <Typography variant="body2" fontWeight="bold" mb={3}>
         Sprint progress - 72% complete
       </Typography>
       <Button variant="contained">AI Assistant</Button>
