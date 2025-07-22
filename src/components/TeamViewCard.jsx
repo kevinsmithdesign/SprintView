@@ -1,4 +1,6 @@
 import React from "react";
+import { useLocation, Link } from "react-router";
+
 import {
   Card,
   Typography,
@@ -20,6 +22,31 @@ import User6 from "../assets/images/Users/User6.jpg";
 
 const TeamViewCard = () => {
   const theme = useTheme();
+
+  const navigationItems = [
+    { label: "Current Sprint", path: "/board" },
+    { label: "Backlog", path: "/" },
+  ];
+
+  const getNavItemStyles = (path) => {
+    const isActive = location.pathname === path;
+
+    return {
+      fontWeight: "SemiBold",
+      p: "10px 18px",
+      borderRadius: "32px",
+      background: isActive ? theme.palette.primary.main : "transparent",
+      display: "inline-block",
+      cursor: "pointer",
+      color: isActive ? "white" : "black",
+      textDecoration: "none",
+      marginRight: "8px",
+      "&:hover": {
+        background: isActive ? theme.palette.primary.main : "#f6f6f6",
+        color: isActive ? "white" : "#000",
+      },
+    };
+  };
 
   return (
     <Card sx={{ background: "#fff" }}>
@@ -64,7 +91,27 @@ const TeamViewCard = () => {
       <Typography variant="body2" fontWeight="bold" mb={3}>
         Sprint progress - 72% complete
       </Typography>
-      <Button variant="contained">AI Assistant</Button>
+      {/* <Button variant="contained">AI Assistant</Button> */}
+      <Box
+        sx={{
+          alignItems: "center",
+          flexGrow: 1,
+          display: { xs: "none", md: "flex" },
+        }}
+      >
+        {navigationItems.map((item) => (
+          <Box
+            key={item.path}
+            component={Link}
+            to={item.path}
+            sx={getNavItemStyles(item.path)}
+          >
+            <Typography variant="body2" fontWeight="bold">
+              {item.label}
+            </Typography>
+          </Box>
+        ))}
+      </Box>
     </Card>
   );
 };

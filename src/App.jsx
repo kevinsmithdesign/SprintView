@@ -11,6 +11,7 @@ import CalendarPage from "./pages/CalendarPage";
 import MessagePage from "./pages/MessagePage";
 import AnalyticsPage from "./pages/AnalyticsPage";
 import AiAssistantPage from "./pages/AiAssistantPage";
+import AiAssistantIcon from "./assets/icons/AiAssistant";
 
 function App() {
   const theme = useTheme();
@@ -29,7 +30,30 @@ function App() {
             </Typography>
           </Container>
         </Box>
+
         <Nav />
+
+        <Box
+          sx={{
+            position: "fixed",
+            bottom: 30,
+            right: 80,
+            zIndex: 100,
+            width: "72px",
+            height: "72px",
+            background: theme.palette.primary.main,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            borderRadius: "50%",
+            cursor: "pointer",
+            "&:hover": {
+              background: theme.palette.primary.dark,
+            },
+          }}
+        >
+          <AiAssistantIcon />
+        </Box>
 
         <Routes>
           <Route path="/" element={<Navigate to="/board" replace />} />

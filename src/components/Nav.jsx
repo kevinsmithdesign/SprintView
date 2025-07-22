@@ -23,7 +23,7 @@ const Nav = () => {
     { label: "Calendar", path: "/calendar" },
     { label: "Message", path: "/message" },
     { label: "Analytics", path: "/analytics" },
-    { label: "AI Assistant", path: "/ai-assistant" },
+    // { label: "AI Assistant", path: "/ai-assistant" },
   ];
 
   const getNavItemStyles = (path) => {
