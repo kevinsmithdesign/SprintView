@@ -88,10 +88,10 @@ const BoardPage = () => {
         <Container>
           <Card sx={{ mb: 2 }}>
             <Grid container spacing={2}>
-              <Grid size={{ xs: 4 }}>
+              <Grid size={{ xs: 12, md: 6, lg: 4 }}>
                 <TeamViewCard />
               </Grid>
-              <Grid size={{ xs: 4 }}>
+              <Grid size={{ xs: 12, md: 6, lg: 4 }}>
                 <Card sx={{ background: "#fff" }}>
                   <Typography fontWeight="bold" mb={1.5}>
                     SPRINT PLANNING
@@ -110,7 +110,7 @@ const BoardPage = () => {
                   )}
                 </Card>
               </Grid>
-              <Grid size={{ xs: 4 }}>
+              <Grid size={{ xs: 12, md: 6, lg: 4 }}>
                 <Card sx={{ background: "#fff" }}>
                   <Typography fontWeight="bold" mb={1.5}>
                     SPRINT ACTIONS
@@ -141,7 +141,7 @@ const BoardPage = () => {
         >
           <Container>
             <Grid container spacing={2}>
-              <Grid size={{ xs: 12, md: 3 }}>
+              <Grid size={{ xs: 12, md: 6, lg: 3 }}>
                 <Typography fontWeight="bold" mb={1.5}>
                   TODO
                 </Typography>
@@ -173,7 +173,7 @@ const BoardPage = () => {
                   ]}
                 />
               </Grid>
-              <Grid size={{ xs: 12, md: 3 }}>
+              <Grid size={{ xs: 12, md: 6, lg: 3 }}>
                 <Typography fontWeight="bold" mb={1.5}>
                   IN PROGRESS
                 </Typography>
@@ -199,7 +199,7 @@ const BoardPage = () => {
                   ]}
                 />
               </Grid>
-              <Grid size={{ xs: 12, md: 3 }}>
+              <Grid size={{ xs: 12, md: 6, lg: 3 }}>
                 <Typography fontWeight="bold" mb={1.5}>
                   REVIEW
                 </Typography>
@@ -232,7 +232,7 @@ const BoardPage = () => {
                   avatars={[{ src: User3, alt: "User 3" }]}
                 />
               </Grid>
-              <Grid size={{ xs: 12, md: 3 }}>
+              <Grid size={{ xs: 12, md: 6, lg: 3 }}>
                 <Typography fontWeight="bold" mb={1.5}>
                   DONE
                 </Typography>
