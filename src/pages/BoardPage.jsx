@@ -6,7 +6,6 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 import TeamViewCard from "../components/TeamViewCard";
-import TodaysMeetingsCard from "../components/TodaysMeetingsCard";
 import QuickActions from "../components/QuickActions";
 import TaskCard from "../components/TaskCard";
 
@@ -27,6 +26,8 @@ import WarningCircleIcon from "../assets/icons/WarningCircleIcon";
 import FireIcon from "../assets/icons/FireIcon";
 
 const BoardPage = () => {
+  const [activeTab, setActiveTab] = useState("sprint");
+
   const meetings = [
     {
       id: 1,
@@ -89,7 +90,10 @@ const BoardPage = () => {
           <Card sx={{ mb: 2 }}>
             <Grid container spacing={2}>
               <Grid size={{ xs: 12, md: 6, lg: 4 }}>
-                <TeamViewCard />
+                <TeamViewCard
+                  activeTab={activeTab}
+                  setActiveTab={setActiveTab}
+                />
               </Grid>
               <Grid size={{ xs: 12, md: 6, lg: 4 }}>
                 <Card sx={{ background: "#fff" }}>
@@ -139,133 +143,141 @@ const BoardPage = () => {
             flex: 1,
           }}
         >
-          <Container>
-            <Grid container spacing={2}>
-              <Grid size={{ xs: 12, md: 6, lg: 3 }}>
-                <Typography fontWeight="bold" mb={1.5}>
-                  TODO
-                </Typography>
-                <TaskCard
-                  title="High Fidelity Checkout Mockups"
-                  commentCount="2"
-                  label="UI Design"
-                  variant="ui-design"
-                  avatars={[
-                    { src: User6, alt: "User 6" },
-                    { src: User1, alt: "User 1" },
-                  ]}
-                />
-                <TaskCard
-                  title="High Fidelity Checkout Mockups"
-                  commentCount="2"
-                  label="UI Design"
-                  variant="ui-design"
-                  avatars={[{ src: User6, alt: "User 6" }]}
-                />
-                <TaskCard
-                  title="High Fidelity Checkout Mockups"
-                  commentCount="2"
-                  label="UI Design"
-                  variant="ui-design"
-                  avatars={[
-                    { src: User4, alt: "User 4" },
-                    { src: User2, alt: "User 2" },
-                  ]}
-                />
+          {activeTab === "sprint" ? (
+            <Container>
+              <Grid container spacing={2}>
+                <Grid size={{ xs: 12, md: 6, lg: 3 }}>
+                  <Typography fontWeight="bold" mb={1.5}>
+                    TODO
+                  </Typography>
+                  <TaskCard
+                    title="High Fidelity Checkout Mockups"
+                    commentCount="2"
+                    label="UI Design"
+                    variant="ui-design"
+                    avatars={[
+                      { src: User6, alt: "User 6" },
+                      { src: User1, alt: "User 1" },
+                    ]}
+                  />
+                  <TaskCard
+                    title="High Fidelity Checkout Mockups"
+                    commentCount="2"
+                    label="UI Design"
+                    variant="ui-design"
+                    avatars={[{ src: User6, alt: "User 6" }]}
+                  />
+                  <TaskCard
+                    title="High Fidelity Checkout Mockups"
+                    commentCount="2"
+                    label="UI Design"
+                    variant="ui-design"
+                    avatars={[
+                      { src: User4, alt: "User 4" },
+                      { src: User2, alt: "User 2" },
+                    ]}
+                  />
+                </Grid>
+                <Grid size={{ xs: 12, md: 6, lg: 3 }}>
+                  <Typography fontWeight="bold" mb={1.5}>
+                    IN PROGRESS
+                  </Typography>
+                  <TaskCard
+                    title="High Fidelity Checkout Mockups"
+                    commentCount="2"
+                    label="UX Design"
+                    variant="ux-design"
+                    avatars={[
+                      { src: User3, alt: "User 3" },
+                      { src: User2, alt: "User 2" },
+                    ]}
+                  />
+                  <TaskCard
+                    title="High Fidelity Checkout Mockups"
+                    commentCount="2"
+                    label="UI Design"
+                    variant="ui-design"
+                    avatars={[
+                      { src: User6, alt: "User 6" },
+                      { src: User2, alt: "User 2" },
+                      { src: User5, alt: "User 5" },
+                    ]}
+                  />
+                </Grid>
+                <Grid size={{ xs: 12, md: 6, lg: 3 }}>
+                  <Typography fontWeight="bold" mb={1.5}>
+                    REVIEW
+                  </Typography>
+                  <TaskCard
+                    title="High Fidelity Checkout Mockups"
+                    commentCount="2"
+                    label="Front-End"
+                    variant="front-end"
+                    avatars={[
+                      { src: User6, alt: "User 6" },
+                      { src: User3, alt: "User 3" },
+                      { src: User5, alt: "User 5" },
+                    ]}
+                  />
+                  <TaskCard
+                    title="High Fidelity Checkout Mockups"
+                    commentCount="2"
+                    label="UI Design"
+                    variant="ui-design"
+                    avatars={[
+                      { src: User1, alt: "User 1" },
+                      { src: User2, alt: "User 2" },
+                    ]}
+                  />
+                  <TaskCard
+                    title="High Fidelity Checkout Mockups"
+                    commentCount="2"
+                    label="UI Design"
+                    variant="ui-design"
+                    avatars={[{ src: User3, alt: "User 3" }]}
+                  />
+                </Grid>
+                <Grid size={{ xs: 12, md: 6, lg: 3 }}>
+                  <Typography fontWeight="bold" mb={1.5}>
+                    DONE
+                  </Typography>
+                  <TaskCard
+                    title="High Fidelity Checkout Mockups"
+                    commentCount="2"
+                    label="Back-End"
+                    variant="back-end"
+                    avatars={[{ src: User6, alt: "User 6" }]}
+                  />
+                  <TaskCard
+                    title="High Fidelity Checkout Mockups"
+                    commentCount="2"
+                    label="UI Design"
+                    variant="ui-design"
+                    avatars={[
+                      { src: User3, alt: "User 3" },
+                      { src: User2, alt: "User 2" },
+                    ]}
+                  />
+                  <TaskCard
+                    title="High Fidelity Checkout Mockups"
+                    commentCount="2"
+                    label="UI Design"
+                    variant="ui-design"
+                    avatars={[
+                      { src: User1, alt: "User 1" },
+                      { src: User2, alt: "User 2" },
+                    ]}
+                  />
+                </Grid>
               </Grid>
-              <Grid size={{ xs: 12, md: 6, lg: 3 }}>
-                <Typography fontWeight="bold" mb={1.5}>
-                  IN PROGRESS
-                </Typography>
-                <TaskCard
-                  title="High Fidelity Checkout Mockups"
-                  commentCount="2"
-                  label="UX Design"
-                  variant="ux-design"
-                  avatars={[
-                    { src: User3, alt: "User 3" },
-                    { src: User2, alt: "User 2" },
-                  ]}
-                />
-                <TaskCard
-                  title="High Fidelity Checkout Mockups"
-                  commentCount="2"
-                  label="UI Design"
-                  variant="ui-design"
-                  avatars={[
-                    { src: User6, alt: "User 6" },
-                    { src: User2, alt: "User 2" },
-                    { src: User5, alt: "User 5" },
-                  ]}
-                />
-              </Grid>
-              <Grid size={{ xs: 12, md: 6, lg: 3 }}>
-                <Typography fontWeight="bold" mb={1.5}>
-                  REVIEW
-                </Typography>
-                <TaskCard
-                  title="High Fidelity Checkout Mockups"
-                  commentCount="2"
-                  label="Front-End"
-                  variant="front-end"
-                  avatars={[
-                    { src: User6, alt: "User 6" },
-                    { src: User3, alt: "User 3" },
-                    { src: User5, alt: "User 5" },
-                  ]}
-                />
-                <TaskCard
-                  title="High Fidelity Checkout Mockups"
-                  commentCount="2"
-                  label="UI Design"
-                  variant="ui-design"
-                  avatars={[
-                    { src: User1, alt: "User 1" },
-                    { src: User2, alt: "User 2" },
-                  ]}
-                />
-                <TaskCard
-                  title="High Fidelity Checkout Mockups"
-                  commentCount="2"
-                  label="UI Design"
-                  variant="ui-design"
-                  avatars={[{ src: User3, alt: "User 3" }]}
-                />
-              </Grid>
-              <Grid size={{ xs: 12, md: 6, lg: 3 }}>
-                <Typography fontWeight="bold" mb={1.5}>
-                  DONE
-                </Typography>
-                <TaskCard
-                  title="High Fidelity Checkout Mockups"
-                  commentCount="2"
-                  label="Back-End"
-                  variant="back-end"
-                  avatars={[{ src: User6, alt: "User 6" }]}
-                />
-                <TaskCard
-                  title="High Fidelity Checkout Mockups"
-                  commentCount="2"
-                  label="UI Design"
-                  variant="ui-design"
-                  avatars={[
-                    { src: User3, alt: "User 3" },
-                    { src: User2, alt: "User 2" },
-                  ]}
-                />
-                <TaskCard
-                  title="High Fidelity Checkout Mockups"
-                  commentCount="2"
-                  label="UI Design"
-                  variant="ui-design"
-                  avatars={[
-                    { src: User1, alt: "User 1" },
-                    { src: User2, alt: "User 2" },
-                  ]}
-                />
-              </Grid>
-            </Grid>
-          </Container>
+            </Container>
+          ) : (
+            <Container>
+              <Card sx={{ background: "white", mb: 0.5 }}>Task 1</Card>
+              <Card sx={{ background: "white", mb: 0.5 }}>Task 2</Card>
+              <Card sx={{ background: "white", mb: 0.5 }}>Task 3</Card>
+            </Container>
+          )}
         </Box>
       </LocalizationProvider>
     </Box>

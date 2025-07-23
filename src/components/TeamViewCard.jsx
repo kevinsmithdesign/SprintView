@@ -21,9 +21,12 @@ import User4 from "../assets/images/Users/User4.jpg";
 import User5 from "../assets/images/Users/User5.jpg";
 import User6 from "../assets/images/Users/User6.jpg";
 
-const TeamViewCard = () => {
+const TeamViewCard = ({ activeTab, setActiveTab }) => {
   const theme = useTheme();
-  const [activeTab, setActiveTab] = useState("sprint");
+
+  const toggleBoard = () => {
+    setActiveTab((activeTab) => (activeTab ? activeTab : !activeTab));
+  };
 
   return (
     <Card sx={{ background: "#fff" }}>
