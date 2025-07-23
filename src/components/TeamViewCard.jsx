@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation, Link } from "react-router";
+import { motion } from "framer-motion";
 
 import {
   Card,
@@ -22,31 +23,7 @@ import User6 from "../assets/images/Users/User6.jpg";
 
 const TeamViewCard = () => {
   const theme = useTheme();
-
-  const navigationItems = [
-    { label: "Current Sprint", path: "/board" },
-    { label: "Backlog", path: "/" },
-  ];
-
-  const getNavItemStyles = (path) => {
-    const isActive = location.pathname === path;
-
-    return {
-      fontWeight: "SemiBold",
-      p: "10px 18px",
-      borderRadius: "32px",
-      background: isActive ? theme.palette.primary.main : "transparent",
-      display: "inline-block",
-      cursor: "pointer",
-      color: isActive ? "white" : "black",
-      textDecoration: "none",
-      marginRight: "8px",
-      "&:hover": {
-        background: isActive ? theme.palette.primary.main : "#f6f6f6",
-        color: isActive ? "white" : "#000",
-      },
-    };
-  };
+  const [activeTab, setActiveTab] = useState("sprint");
 
   return (
     <Card sx={{ background: "#fff" }}>
@@ -91,26 +68,72 @@ const TeamViewCard = () => {
       <Typography variant="body2" fontWeight="bold" mb={3}>
         Sprint progress - 72% complete
       </Typography>
-      {/* <Button variant="contained">AI Assistant</Button> */}
       <Box
         sx={{
-          alignItems: "center",
-          flexGrow: 1,
+          position: "relative",
           display: { xs: "none", md: "flex" },
+          background: "#F5F9FC",
+          borderRadius: "32px",
+          p: "4px",
+          width: "100%", // Full width of parent card
+          overflow: "hidden",
         }}
       >
-        {navigationItems.map((item) => (
-          <Box
-            key={item.path}
-            component={Link}
-            to={item.path}
-            sx={getNavItemStyles(item.path)}
-          >
-            <Typography variant="body2" fontWeight="bold">
-              {item.label}
-            </Typography>
-          </Box>
-        ))}
+        {/* Sliding pill background */}
+        <motion.div
+          layout
+          transition={{ type: "spring", stiffness: 500, damping: 30 }}
+          style={{
+            position: "absolute",
+            top: 4,
+            bottom: 4,
+            left: activeTab === "sprint" ? "4px" : "50%",
+            width: "50%",
+            background: theme.palette.primary.main,
+            borderRadius: 999,
+            zIndex: 1,
+          }}
+        />
+
+        {/* Sprint Tab */}
+        <Box
+          component={Link}
+          onClick={() => setActiveTab("sprint")}
+          sx={{
+            flex: 1,
+            textAlign: "center",
+            zIndex: 2,
+            p: "12px 18px",
+            cursor: "pointer",
+            textDecoration: "none",
+            borderRadius: "32px",
+            color: activeTab === "sprint" ? "#fff" : "#000",
+          }}
+        >
+          <Typography variant="body2" fontWeight="bold">
+            Current Sprint
+          </Typography>
+        </Box>
+
+        {/* Backlog Tab */}
+        <Box
+          component={Link}
+          onClick={() => setActiveTab("backlog")}
+          sx={{
+            flex: 1,
+            textAlign: "center",
+            zIndex: 2,
+            p: "12px 18px",
+            cursor: "pointer",
+            textDecoration: "none",
+            borderRadius: "32px",
+            color: activeTab === "backlog" ? "#fff" : "#000",
+          }}
+        >
+          <Typography variant="body2" fontWeight="bold">
+            Backlog
+          </Typography>
+        </Box>
       </Box>
     </Card>
   );
