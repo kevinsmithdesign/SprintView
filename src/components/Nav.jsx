@@ -52,7 +52,12 @@ const Nav = () => {
         <Box sx={{ mr: 6 }}>
           <SprintView />
         </Box>
-        <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+        <Box
+          sx={{
+            flexGrow: 1,
+            display: { xs: "none", md: "flex", background: "" },
+          }}
+        >
           <TextField
             placeholder="Search"
             id="outlined-start-adornment"
@@ -66,6 +71,7 @@ const Nav = () => {
               },
             }}
             sx={{
+              width: "60%",
               "& .MuiInputBase-input": {
                 paddingLeft: 0, // remove default left padding
               },
@@ -81,6 +87,7 @@ const Nav = () => {
             alignItems: "center",
             flexGrow: 1,
             display: { xs: "none", md: "flex" },
+            background: "",
           }}
         >
           {navigationItems.map((item) => (

@@ -142,11 +142,18 @@ const MessagePage = () => {
   ];
 
   return (
-    <Container>
-      <Grid container spacing={2}>
+    <Container sx={{ pb: 6 }}>
+      <Grid container spacing={2} sx={{ minHeight: "calc(100vh - 200px)" }}>
         <Grid size={{ xs: 12, md: 3 }} sx={{ display: "flex" }}>
-          <Card sx={{ width: "100%" }}>
-            <Typography fontWeight="bold" mb={1.5}>
+          <Card
+            sx={{
+              width: "100%",
+
+              overflowY: "auto",
+              height: "calc(100vh - 200px)",
+            }}
+          >
+            <Typography fontWeight="bold" mb={2}>
               CHANNELS
             </Typography>
             <Box
@@ -159,8 +166,8 @@ const MessagePage = () => {
                 >
                   <Box
                     sx={{
-                      width: "36px",
-                      height: "36px",
+                      width: "40px",
+                      height: "40px",
                       borderRadius: "50%",
                       background: notification.color,
                       mr: 1,
@@ -191,7 +198,7 @@ const MessagePage = () => {
               ))}
             </Box>
 
-            <Typography fontWeight="bold" mb={1.5}>
+            <Typography fontWeight="bold" mb={2}>
               DIRECT MESSAGES
             </Typography>
             <Box sx={{ display: "flex", flexDirection: "column", gap: 1.2 }}>
@@ -202,12 +209,12 @@ const MessagePage = () => {
                 >
                   <Box
                     sx={{
-                      mr: 1,
+                      mr: 1.2,
                     }}
                   >
                     <Avatar
                       src={notification.avatar}
-                      style={{ height: "36px", width: "36px" }}
+                      style={{ height: "40px", width: "40px" }}
                     />
                   </Box>
                   <Box sx={{ flexGrow: 1 }}>
@@ -236,12 +243,14 @@ const MessagePage = () => {
             </Box>
           </Card>
         </Grid>
+
         <Grid size={{ xs: 12, md: 6 }} sx={{ display: "flex" }}>
           <Card
             sx={{
               width: "100%",
               display: "flex",
               flexDirection: "column",
+              height: "calc(100vh - 200px)",
             }}
           >
             {/* Chat messages area - this will take up available space */}
@@ -250,6 +259,9 @@ const MessagePage = () => {
                 flexGrow: 1,
                 p: 2, // Add some padding for the messages area
                 overflowY: "auto", // Allow scrolling if messages overflow
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
               }}
             >
               {/* This is where your chat messages would go */}
@@ -259,13 +271,7 @@ const MessagePage = () => {
             </Box>
 
             {/* Input area - this stays at the bottom */}
-            <Box
-              sx={
-                {
-                  // p: 2, // Padding around the input
-                }
-              }
-            >
+            <Box sx={{ p: 2, borderTop: "1px solid #f0f0f0" }}>
               <Box sx={{ display: "flex" }}>
                 <TextField
                   fullWidth
@@ -273,8 +279,10 @@ const MessagePage = () => {
                   variant="outlined"
                   sx={{
                     "& .MuiOutlinedInput-root": {
-                      paddingLeft: 0.8,
-                      paddingRight: 0.8,
+                      // paddingLeft: 0.8,
+                      // paddingRight: 0.8,
+                      py: 1,
+                      background: "#fff",
                     },
                   }}
                   slotProps={{
@@ -293,28 +301,20 @@ const MessagePage = () => {
                     },
                   }}
                 />
-                {/* <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    background: theme.palette.primary.main,
-                    height: "42px",
-                    width: "46px",
-                    borderRadius: "8px",
-                    ml: 1,
-                    cursor: "pointer",
-                  }}
-                >
-                  <MicIcon />
-                </Box> */}
               </Box>
             </Box>
           </Card>
         </Grid>
 
         <Grid size={{ xs: 12, md: 3 }} sx={{ display: "flex" }}>
-          <Card sx={{ width: "100%" }}>
+          <Card
+            sx={{
+              width: "100%",
+              p: 2,
+              overflowY: "auto",
+              height: "calc(100vh - 200px)",
+            }}
+          >
             <Typography fontWeight="bold" mb={1.5}>
               DOCUMENTS
             </Typography>
