@@ -24,9 +24,7 @@ import User6 from "../assets/images/Users/User6.jpg";
 const TeamViewCard = ({ activeTab, setActiveTab }) => {
   const theme = useTheme();
 
-  const toggleBoard = () => {
-    setActiveTab((activeTab) => (activeTab ? activeTab : !activeTab));
-  };
+  const toggleBoard = () => {};
 
   return (
     <Card sx={{ background: "#fff" }}>
@@ -90,8 +88,8 @@ const TeamViewCard = ({ activeTab, setActiveTab }) => {
             position: "absolute",
             top: 4,
             bottom: 4,
-            left: activeTab === "sprint" ? "4px" : "50%",
-            width: "50%",
+            left: activeTab === "sprint" ? "4px" : "calc(50% + 4px)",
+            width: "calc(50% - 8px)",
             background: theme.palette.primary.main,
             borderRadius: 999,
             zIndex: 1,
