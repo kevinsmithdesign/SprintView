@@ -32,6 +32,9 @@ import User6 from "../assets/images/Users/User6.jpg";
 import User7 from "../assets/images/Users/User7.jpg";
 import User8 from "../assets/images/Users/User8.jpg";
 import User9 from "../assets/images/Users/User9.jpg";
+import WorldIcon from "../assets/icons/WorldIcon";
+import PenIcon from "../assets/icons/PenIcon";
+import DevelopmentIcon from "../assets/icons/DevelopmentIcon";
 
 const MessagePage = () => {
   const theme = useTheme();
@@ -45,6 +48,7 @@ const MessagePage = () => {
       label: "General",
       color: "#FCD98E",
       count: 2,
+      icon: <WorldIcon />,
       messages: [
         {
           id: 1,
@@ -71,8 +75,9 @@ const MessagePage = () => {
     },
     {
       id: 2,
-      label: "Work",
+      label: "Design Review",
       color: "#B6BAEA",
+      icon: <PenIcon />,
       messages: [
         {
           id: 1,
@@ -92,8 +97,9 @@ const MessagePage = () => {
     },
     {
       id: 3,
-      label: "Personal",
+      label: "Development",
       color: "#FED2D7",
+      icon: <DevelopmentIcon />,
       messages: [
         {
           id: 1,
@@ -521,14 +527,16 @@ CREATE INDEX idx_users_email ON users(email);`,
     if (!selectedItem) {
       return (
         <Box
-          sx={{
-            flexGrow: 1,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            flexDirection: "column",
-            gap: 2,
-          }}
+          sx={
+            {
+              // flexGrow: 1,
+              // display: "flex",
+              // alignItems: "center",
+              // justifyContent: "center",
+              // flexDirection: "column",
+              // gap: 2,
+            }
+          }
         >
           <Typography variant="h6" color="text.secondary">
             Welcome to SprintView Messages
@@ -546,7 +554,7 @@ CREATE INDEX idx_users_email ON users(email);`,
       selectedType === "video"
     ) {
       return (
-        <Box sx={{ flexGrow: 1, p: 3, overflowY: "auto" }}>
+        <Box sx={{ flexGrow: 1, overflowY: "auto" }}>
           <Box sx={{ mb: 3 }}>
             <Typography
               variant="h5"
@@ -610,7 +618,7 @@ CREATE INDEX idx_users_email ON users(email);`,
     return (
       <>
         {/* Chat header */}
-        <Box sx={{ p: 2, borderBottom: "1px solid #f0f0f0" }}>
+        <Box sx={{ background: "#fff", p: 2, borderRadius: "8px" }}>
           <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
             {selectedType === "direct" ? (
               <Avatar
@@ -637,7 +645,7 @@ CREATE INDEX idx_users_email ON users(email);`,
         </Box>
 
         {/* Messages area */}
-        <Box sx={{ flexGrow: 1, p: 2, overflowY: "auto" }}>
+        <Box sx={{ mt: 2, flexGrow: 1, p: 2, overflowY: "auto" }}>
           {selectedItem.messages?.map((msg) => (
             <Box key={msg.id} sx={{ mb: 3 }}>
               <Box sx={{ display: "flex", gap: 2, alignItems: "flex-start" }}>
@@ -693,7 +701,7 @@ CREATE INDEX idx_users_email ON users(email);`,
         </Box>
 
         {/* Input area */}
-        <Box sx={{ p: 2, borderTop: "1px solid #f0f0f0" }}>
+        <Box>
           <Box sx={{ display: "flex" }}>
             <TextField
               fullWidth
@@ -759,15 +767,15 @@ CREATE INDEX idx_users_email ON users(email);`,
                     display: "flex",
                     alignItems: "center",
                     cursor: "pointer",
-                    p: 1,
-                    borderRadius: "8px",
+                    p: 1.5,
+                    borderRadius: "12px",
                     bgcolor:
                       selectedItem?.id === notification.id &&
                       selectedType === "channel"
-                        ? "rgba(25, 118, 210, 0.08)"
+                        ? "#fff"
                         : "transparent",
                     "&:hover": {
-                      bgcolor: "rgba(0, 0, 0, 0.04)",
+                      background: "#E6E7F9",
                     },
                   }}
                   onClick={() => handleItemClick(notification, "channel")}
@@ -779,8 +787,13 @@ CREATE INDEX idx_users_email ON users(email);`,
                       borderRadius: "50%",
                       background: notification.color,
                       mr: 1.5,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
                     }}
-                  />
+                  >
+                    {notification.icon}
+                  </Box>
                   <Box sx={{ flexGrow: 1 }}>
                     <Typography>{notification.label}</Typography>
                   </Box>
@@ -817,15 +830,15 @@ CREATE INDEX idx_users_email ON users(email);`,
                     display: "flex",
                     alignItems: "center",
                     cursor: "pointer",
-                    p: 1,
-                    borderRadius: "8px",
+                    p: 1.5,
+                    borderRadius: "12px",
                     bgcolor:
                       selectedItem?.label === msg.label &&
                       selectedType === "direct"
-                        ? "rgba(25, 118, 210, 0.08)"
+                        ? "#fff"
                         : "transparent",
                     "&:hover": {
-                      bgcolor: "rgba(0, 0, 0, 0.04)",
+                      background: "#E6E7F9",
                     },
                   }}
                   onClick={() => handleItemClick(msg, "direct")}

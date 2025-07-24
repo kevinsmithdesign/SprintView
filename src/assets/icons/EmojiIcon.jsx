@@ -12,7 +12,7 @@ const EmojiIcon = () => {
         justifyContent: "center",
         p: 0.3,
         borderRadius: "4px",
-        mr: 0.5,
+        mr: 0,
         cursor: "pointer",
         border: `1px solid ${theme.palette.primary.main}`,
       }}
