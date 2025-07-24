@@ -1,6 +1,7 @@
 import React from "react";
 import { useLocation, Link } from "react-router";
 import SprintView from "../assets/images/SprintViewLogo";
+import { motion } from "framer-motion";
 import {
   Container,
   Avatar,
@@ -23,39 +24,33 @@ const Nav = () => {
     { label: "Calendar", path: "/calendar" },
     { label: "Message", path: "/message" },
     { label: "Analytics", path: "/analytics" },
-    // { label: "AI Assistant", path: "/ai-assistant" },
   ];
 
-  const getNavItemStyles = (path) => {
-    const isActive = location.pathname === path;
-
-    return {
-      fontWeight: "SemiBold",
-      p: "10px 18px",
-      borderRadius: "32px",
-      background: isActive ? theme.palette.primary.main : "transparent",
-      display: "inline-block",
-      cursor: "pointer",
-      color: isActive ? "white" : "black",
-      textDecoration: "none",
-      marginRight: "8px",
-      "&:hover": {
-        background: isActive ? theme.palette.primary.main : "#f6f6f6",
-        color: isActive ? "white" : "#000",
-      },
-    };
-  };
+  const activeIndex = navigationItems.findIndex(
+    (item) => item.path === location.pathname
+  );
 
   return (
-    <Container sx={{ background: "", mt: 4, mb: 4 }}>
-      <Box sx={{ display: "flex", alignItems: "center" }}>
-        <Box sx={{ mr: 6 }}>
+    <Container sx={{ mt: 4, mb: 4 }}>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: 2,
+        }}
+      >
+        {/* Logo */}
+        <Box sx={{ mr: 4 }}>
           <SprintView />
         </Box>
+
+        {/* Search */}
         <Box
           sx={{
-            flexGrow: 1,
-            display: { xs: "none", md: "flex", background: "" },
+            display: { xs: "none", md: "flex" },
+            flex: 1,
+            justifyContent: "center",
           }}
         >
           <TextField
@@ -73,38 +68,87 @@ const Nav = () => {
             sx={{
               width: "60%",
               "& .MuiInputBase-input": {
-                paddingLeft: 0, // remove default left padding
+                paddingLeft: 0,
               },
               "& .MuiInputAdornment-root": {
-                marginRight: 1, // remove adornment right margin
+                marginRight: 1,
               },
             }}
           />
         </Box>
 
+        {/* Nav Tabs */}
         <Box
           sx={{
-            alignItems: "center",
-            flexGrow: 1,
-            display: { xs: "none", md: "flex" },
-            background: "",
+            flex: 1,
+            display: "flex",
+            justifyContent: "center",
           }}
         >
-          {navigationItems.map((item) => (
-            <Box
-              key={item.path}
-              component={Link}
-              to={item.path}
-              sx={getNavItemStyles(item.path)}
-            >
-              <Typography variant="body2" fontWeight="bold">
-                {item.label}
-              </Typography>
-            </Box>
-          ))}
+          <Box
+            sx={{
+              display: "flex",
+              position: "relative",
+              // background: "#F5F9FC",
+              background: "red",
+              borderRadius: "32px",
+              p: "4px",
+              height: "44px",
+              overflow: "hidden",
+              width: "100%",
+              maxWidth: "500px",
+            }}
+          >
+            {/* Sliding background pill */}
+            <motion.div
+              layout
+              transition={{ type: "spring", stiffness: 500, damping: 30 }}
+              style={{
+                position: "absolute",
+                top: 4,
+                bottom: 4,
+                left: `calc(${
+                  activeIndex * (100 / navigationItems.length)
+                }% + 4px)`,
+                width: `calc(${100 / navigationItems.length}% - 8px)`,
+                background: theme.palette.primary.main,
+                borderRadius: "28px",
+                zIndex: 1,
+              }}
+            />
+
+            {/* Nav Items */}
+            {navigationItems.map((item) => {
+              const isActive = location.pathname === item.path;
+
+              return (
+                <Box
+                  key={item.path}
+                  component={Link}
+                  to={item.path}
+                  sx={{
+                    flex: 1,
+                    textAlign: "center",
+                    zIndex: 2,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    borderRadius: "28px",
+                    color: isActive ? "#fff" : "#000",
+                    textDecoration: "none",
+                    fontWeight: "bold",
+                    height: "36px",
+                  }}
+                >
+                  <Typography variant="body2">{item.label}</Typography>
+                </Box>
+              );
+            })}
+          </Box>
         </Box>
 
-        <Box sx={{ marginLeft: "auto" }}>
+        {/* Avatar */}
+        <Box>
           <Avatar>
             <img src={User2} alt="user profile img" height="40px" />
           </Avatar>
