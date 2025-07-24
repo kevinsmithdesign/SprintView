@@ -37,7 +37,6 @@ const Nav = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          gap: 2,
         }}
       >
         {/* Logo */}
@@ -48,9 +47,7 @@ const Nav = () => {
         {/* Search */}
         <Box
           sx={{
-            display: { xs: "none", md: "flex" },
-            flex: 1,
-            justifyContent: "center",
+            display: { xs: "none", lg: "flex" },
           }}
         >
           <TextField
@@ -66,9 +63,9 @@ const Nav = () => {
               },
             }}
             sx={{
-              width: "60%",
               "& .MuiInputBase-input": {
                 paddingLeft: 0,
+                width: "260px",
               },
               "& .MuiInputAdornment-root": {
                 marginRight: 1,
@@ -81,7 +78,7 @@ const Nav = () => {
         <Box
           sx={{
             flex: 1,
-            display: "flex",
+            display: { xs: "none", lg: "flex" },
             justifyContent: "center",
           }}
         >
@@ -89,8 +86,7 @@ const Nav = () => {
             sx={{
               display: "flex",
               position: "relative",
-              // background: "#F5F9FC",
-              background: "red",
+              background: "#F5F9FC",
               borderRadius: "32px",
               p: "4px",
               height: "44px",
@@ -140,7 +136,9 @@ const Nav = () => {
                     height: "36px",
                   }}
                 >
-                  <Typography variant="body2">{item.label}</Typography>
+                  <Typography variant="body2" fontWeight="bold">
+                    {item.label}
+                  </Typography>
                 </Box>
               );
             })}
