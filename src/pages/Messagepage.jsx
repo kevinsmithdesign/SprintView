@@ -35,6 +35,8 @@ import User9 from "../assets/images/Users/User9.jpg";
 import WorldIcon from "../assets/icons/WorldIcon";
 import PenIcon from "../assets/icons/PenIcon";
 import DevelopmentIcon from "../assets/icons/DevelopmentIcon";
+import ImageIcon from "../assets/icons/ImageIcon";
+import VideoIcon from "../assets/icons/VideoIcon";
 
 const MessagePage = () => {
   const theme = useTheme();
@@ -636,7 +638,9 @@ CREATE INDEX idx_users_email ON users(email);`,
               />
             )}
             <Box>
-              <Typography variant="h6">{selectedItem.label}</Typography>
+              <Typography variant="h6" fontWeight="bold">
+                {selectedItem.label}
+              </Typography>
               <Typography variant="body2" color="text.secondary">
                 {selectedType === "direct" ? "Direct Message" : "Channel"}
               </Typography>
@@ -907,27 +911,36 @@ CREATE INDEX idx_users_email ON users(email);`,
                   sx={{
                     p: 1.5,
                     background: "#fff",
-                    borderRadius: "6px",
-                    borderLeft: `6px solid`,
-                    borderColor: document.borderColor,
+                    borderRadius: "12px",
                     mb: 0.6,
                     cursor: "pointer",
                     transition: "all 0.2s",
                     bgcolor:
                       selectedItem?.id === document.id &&
                       selectedType === "document"
-                        ? "rgba(25, 118, 210, 0.08)"
+                        ? "#E6E7F9"
                         : "#fff",
                     "&:hover": {
-                      // transform: "translateY(-1px)",
-                      // boxShadow: 1,
+                      background: "#E6E7F9",
                     },
                   }}
                   onClick={() => handleItemClick(document, "document")}
                 >
                   <Stack flexDirection="row" alignItems="center">
                     <Stack sx={{ pr: 1 }}>
-                      <DocumentIcon />
+                      <Box
+                        sx={{
+                          height: "40px",
+                          width: "40px",
+                          background: document.borderColor,
+                          borderRadius: "50%",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <DocumentIcon />
+                      </Box>
                     </Stack>
                     <Stack>
                       <Typography variant="body2">{document.name}</Typography>
@@ -936,38 +949,46 @@ CREATE INDEX idx_users_email ON users(email);`,
                 </Card>
               ))}
             </Box>
-
+            <Typography fontWeight="bold" mb={1.5}>
+              IMAGES
+            </Typography>
             <Box mb={3}>
-              <Typography fontWeight="bold" mb={1.5}>
-                IMAGES
-              </Typography>
               {photo.map((document) => (
                 <Card
                   key={document.id}
                   sx={{
                     p: 1.5,
                     background: "#fff",
-                    borderRadius: "6px",
-                    borderLeft: "6px solid",
-                    borderColor: document.borderColor,
+                    borderRadius: "12px",
                     mb: 0.6,
                     cursor: "pointer",
                     transition: "all 0.2s",
                     bgcolor:
                       selectedItem?.id === document.id &&
-                      selectedType === "image"
-                        ? "rgba(25, 118, 210, 0.08)"
+                      selectedType === "document"
+                        ? "#E6E7F9"
                         : "#fff",
-                    // "&:hover": {
-                    //   transform: "translateY(-1px)",
-                    //   boxShadow: 1,
-                    // },
+                    "&:hover": {
+                      background: "#E6E7F9",
+                    },
                   }}
-                  onClick={() => handleItemClick(document, "image")}
+                  onClick={() => handleItemClick(document, "document")}
                 >
                   <Stack flexDirection="row" alignItems="center">
                     <Stack sx={{ pr: 1 }}>
-                      <DocumentIcon />
+                      <Box
+                        sx={{
+                          height: "40px",
+                          width: "40px",
+                          background: document.borderColor,
+                          borderRadius: "50%",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <ImageIcon />
+                      </Box>
                     </Stack>
                     <Stack>
                       <Typography variant="body2">{document.name}</Typography>
@@ -977,37 +998,46 @@ CREATE INDEX idx_users_email ON users(email);`,
               ))}
             </Box>
 
-            <Box>
-              <Typography fontWeight="bold" mb={1.5}>
-                VIDEO
-              </Typography>
+            <Typography fontWeight="bold" mb={1.5}>
+              VIDEOS
+            </Typography>
+            <Box mb={3}>
               {video.map((document) => (
                 <Card
                   key={document.id}
                   sx={{
                     p: 1.5,
                     background: "#fff",
-                    borderRadius: "6px",
-                    borderLeft: "6px solid",
-                    borderColor: document.borderColor,
+                    borderRadius: "12px",
                     mb: 0.6,
                     cursor: "pointer",
                     transition: "all 0.2s",
                     bgcolor:
                       selectedItem?.id === document.id &&
-                      selectedType === "video"
-                        ? "rgba(25, 118, 210, 0.08)"
+                      selectedType === "document"
+                        ? "#E6E7F9"
                         : "#fff",
-                    // "&:hover": {
-                    //   transform: "translateY(-1px)",
-                    //   boxShadow: 1,
-                    // },
+                    "&:hover": {
+                      background: "#E6E7F9",
+                    },
                   }}
-                  onClick={() => handleItemClick(document, "video")}
+                  onClick={() => handleItemClick(document, "document")}
                 >
                   <Stack flexDirection="row" alignItems="center">
                     <Stack sx={{ pr: 1 }}>
-                      <DocumentIcon />
+                      <Box
+                        sx={{
+                          height: "40px",
+                          width: "40px",
+                          background: document.borderColor,
+                          borderRadius: "50%",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <VideoIcon />
+                      </Box>
                     </Stack>
                     <Stack>
                       <Typography variant="body2">{document.name}</Typography>
