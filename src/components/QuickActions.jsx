@@ -1,59 +1,12 @@
 import React from "react";
-import {
-  Card,
-  Typography,
-  Stack,
-  Box,
-  useTheme,
-  Avatar,
-  LinearProgress,
-  Button,
-} from "@mui/material";
-
-import AddIcon from "../assets/icons/AddIcon";
-import AddMeetingIcon from "../assets/icons/AddMeetingIcon";
-import FilterIcon from "../assets/icons/FilterIcon";
-import ArrowUpLeftIcon from "../assets/icons/ArrowUpLeftIcon";
-import DropdownIcon from "../assets/icons/DropdownIcon";
+import { Card, Typography, Stack, Box, useTheme } from "@mui/material";
 import ChevronRightIcon from "../assets/icons/ChevronRight";
 
 const QuickActions = ({ id, title, link, iconColor, icon }) => {
   const theme = useTheme();
 
-  // const meetings = [
-  //   {
-  //     id: 1,
-  //     title: "Create Story",
-  //     link: "",
-  //     iconColor: "#77B8A0",
-  //     icon: <AddIcon />,
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "Schedule Meeting",
-  //     link: "",
-  //     iconColor: "#F7946F",
-  //     icon: <AddMeetingIcon />,
-  //   },
-  //   {
-  //     id: 3,
-  //     title: "Filter Board",
-  //     link: "",
-  //     iconColor: "#FCD98E",
-  //     icon: <FilterIcon />,
-  //   },
-  //   {
-  //     id: 3,
-  //     title: "Add Blocker",
-  //     link: "",
-  //     iconColor: "#FCD98E",
-  //     icon: <FilterIcon />,
-  //   },
-  // ];
-
   return (
     <>
-      {/* {meetings.map(({ id, title, link, iconColor, icon }) => ( */}
       <Card
         key={id}
         sx={{
@@ -76,7 +29,7 @@ const QuickActions = ({ id, title, link, iconColor, icon }) => {
             transition: "opacity 0.3s ease",
           },
           "&:hover::after": {
-            opacity: 0.2, // adjust to your desired overlay strength
+            opacity: 0.2,
           },
         }}
       >
@@ -110,7 +63,6 @@ const QuickActions = ({ id, title, link, iconColor, icon }) => {
           </Stack>
         </Stack>
       </Card>
-      {/* ))} */}
     </>
   );
 };

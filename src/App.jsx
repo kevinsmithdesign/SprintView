@@ -12,6 +12,7 @@ import CalendarPage from "./pages/CalendarPage";
 import MessagePage from "./pages/MessagePage";
 import AnalyticsPage from "./pages/AnalyticsPage";
 import AiAssistantIcon from "./assets/icons/AiAssistant";
+import AiAssistantPage from "./pages/AiAssistantPage";
 import CloseIcon from "./assets/icons/CloseIcon";
 
 function App() {
@@ -88,19 +89,16 @@ function AppContent() {
               left: 0,
               width: "100vw",
               height: "100vh",
-              backgroundColor: "#000",
+              backgroundColor: "#050505",
               zIndex: 1200,
               color: "#fff",
               display: "flex",
               flexDirection: "column",
-              padding: "2rem",
+              // padding: "2rem",
             }}
           >
-            <Box sx={{ mt: 10 }}>
-              {/* <Typography variant="h4">AI Assistant</Typography>
-              <Typography variant="body1" sx={{ mt: 2 }}>
-                This is where the assistant content will go.
-              </Typography> */}
+            <Box>
+              <AiAssistantPage />
             </Box>
           </motion.div>
         )}
