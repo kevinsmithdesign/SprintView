@@ -634,8 +634,13 @@ CREATE INDEX idx_users_email ON users(email);`,
                   height: 40,
                   borderRadius: "50%",
                   background: selectedItem.color,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
                 }}
-              />
+              >
+                {selectedItem.icon}
+              </Box>
             )}
             <Box>
               <Typography variant="h6" fontWeight="bold">
