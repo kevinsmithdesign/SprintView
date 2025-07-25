@@ -749,20 +749,23 @@ CREATE INDEX idx_users_email ON users(email);`,
 
   return (
     <Container sx={{ pb: 6 }}>
-      <Grid container spacing={2} sx={{ minHeight: "calc(100vh - 200px)" }}>
+      <Grid container sx={{ minHeight: "calc(100vh - 200px)" }}>
         <Grid size={{ xs: 12, md: 3 }} sx={{ display: "flex" }}>
           <Card
             sx={{
               width: "100%",
               overflowY: "auto",
               height: "calc(100vh - 200px)",
+              borderTopRightRadius: 0,
+              borderBottomRightRadius: 0,
+              borderRight: "1px solid #E6E7F9",
             }}
           >
             <Typography fontWeight="bold" mb={2}>
               CHANNELS
             </Typography>
             <Box
-              sx={{ display: "flex", flexDirection: "column", gap: 0.2, mb: 4 }}
+              sx={{ display: "flex", flexDirection: "column", gap: 0.6, mb: 4 }}
             >
               {notifications.map((notification) => (
                 <Box
@@ -776,8 +779,8 @@ CREATE INDEX idx_users_email ON users(email);`,
                     bgcolor:
                       selectedItem?.id === notification.id &&
                       selectedType === "channel"
-                        ? "#fff"
-                        : "transparent",
+                        ? "#E6E7F9"
+                        : "#fff",
                     "&:hover": {
                       background: "#E6E7F9",
                     },
@@ -826,7 +829,7 @@ CREATE INDEX idx_users_email ON users(email);`,
             <Typography fontWeight="bold" mb={2}>
               DIRECT MESSAGES
             </Typography>
-            <Box sx={{ display: "flex", flexDirection: "column", gap: 0.2 }}>
+            <Box sx={{ display: "flex", flexDirection: "column", gap: 0.6 }}>
               {directMsg.map((msg) => (
                 <Box
                   key={`${msg.id}-${msg.label}`}
@@ -839,8 +842,8 @@ CREATE INDEX idx_users_email ON users(email);`,
                     bgcolor:
                       selectedItem?.label === msg.label &&
                       selectedType === "direct"
-                        ? "#fff"
-                        : "transparent",
+                        ? "#E6E7F9"
+                        : "#fff",
                     "&:hover": {
                       background: "#E6E7F9",
                     },
@@ -887,6 +890,8 @@ CREATE INDEX idx_users_email ON users(email);`,
               display: "flex",
               flexDirection: "column",
               height: "calc(100vh - 200px)",
+              borderRadius: 0,
+              borderRight: "1px solid #E6E7F9",
             }}
           >
             {renderMiddleContent()}
@@ -899,6 +904,8 @@ CREATE INDEX idx_users_email ON users(email);`,
               width: "100%",
               overflowY: "auto",
               height: "calc(100vh - 200px)",
+              borderTopLeftRadius: 0,
+              borderBottomLeftRadius: 0,
             }}
           >
             <Typography fontWeight="bold" mb={1.5}>
