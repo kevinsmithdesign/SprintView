@@ -86,7 +86,7 @@ const Nav = () => {
             sx={{
               display: "flex",
               position: "relative",
-              background: "#F5F9FC",
+              // background: "#F5F9FC",
               borderRadius: "32px",
               p: "4px",
               height: "44px",

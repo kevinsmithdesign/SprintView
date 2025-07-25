@@ -25,8 +25,36 @@ import PlanningPokerIcon from "../assets/icons/PlanningPokerIcon";
 import WarningCircleIcon from "../assets/icons/WarningCircleIcon";
 import FireIcon from "../assets/icons/FireIcon";
 
+import CreateStoryDialog from "../components/CreateStoryDialog";
+
 const BoardPage = () => {
   const [activeTab, setActiveTab] = useState("sprint");
+
+  const [openCreateStoryDialog, setOpenCreateStoryDialog] = useState(false);
+
+  const createStoryBtn = () => {
+    setOpenCreateStoryDialog(true);
+  };
+
+  const scheduleMeetingBtn = () => {
+    console.log("schedule meeting");
+  };
+
+  const planningPokerBtn = () => {
+    console.log("planning poker btn");
+  };
+
+  const addBlockerBtn = () => {
+    console.log("add blocker");
+  };
+
+  const retroBoardBtn = () => {
+    console.log("retro board");
+  };
+
+  const filterBoardBtn = () => {
+    console.log("filter board");
+  };
 
   const meetings = [
     {
@@ -35,6 +63,7 @@ const BoardPage = () => {
       link: "",
       iconColor: "#77B8A0",
       icon: <AddIcon />,
+      onClick: createStoryBtn,
     },
     {
       id: 2,
@@ -42,6 +71,7 @@ const BoardPage = () => {
       link: "",
       iconColor: "#B6BAEA",
       icon: <AddMeetingIcon />,
+      onClick: scheduleMeetingBtn,
     },
     {
       id: 3,
@@ -49,14 +79,8 @@ const BoardPage = () => {
       link: "",
       iconColor: "#FED2D7",
       icon: <PlanningPokerIcon />,
+      onClick: planningPokerBtn,
     },
-    // {
-    //   id: 3,
-    //   title: "Add Blocker",
-    //   link: "",
-    //   iconColor: "#FCD98E",
-    //   icon: <FilterIcon />,
-    // },
   ];
 
   const other = [
@@ -66,6 +90,7 @@ const BoardPage = () => {
       link: "",
       iconColor: "#F16362",
       icon: <WarningCircleIcon />,
+      onClick: addBlockerBtn,
     },
     {
       id: 1,
@@ -73,6 +98,7 @@ const BoardPage = () => {
       link: "",
       iconColor: "#F7946F",
       icon: <FireIcon />,
+      onClick: retroBoardBtn,
     },
     {
       id: 2,
@@ -80,6 +106,7 @@ const BoardPage = () => {
       link: "",
       iconColor: "#FCD98E",
       icon: <FilterIcon />,
+      onClick: filterBoardBtn,
     },
   ];
 
@@ -101,7 +128,15 @@ const BoardPage = () => {
                     SPRINT PLANNING
                   </Typography>
                   {meetings.map(
-                    ({ id, meetings, title, link, iconColor, icon }) => (
+                    ({
+                      id,
+                      meetings,
+                      title,
+                      link,
+                      iconColor,
+                      icon,
+                      onClick,
+                    }) => (
                       <QuickActions
                         id={id}
                         meetings={meetings}
@@ -109,6 +144,7 @@ const BoardPage = () => {
                         link={link}
                         iconColor={iconColor}
                         icon={icon}
+                        onClick={onClick}
                       />
                     )
                   )}
@@ -120,7 +156,15 @@ const BoardPage = () => {
                     SPRINT ACTIONS
                   </Typography>
                   {other.map(
-                    ({ id, meetings, title, link, iconColor, icon }) => (
+                    ({
+                      id,
+                      meetings,
+                      title,
+                      link,
+                      iconColor,
+                      icon,
+                      onClick,
+                    }) => (
                       <QuickActions
                         id={id}
                         meetings={meetings}
@@ -128,6 +172,7 @@ const BoardPage = () => {
                         link={link}
                         iconColor={iconColor}
                         icon={icon}
+                        onClick={onClick}
                       />
                     )
                   )}
@@ -280,6 +325,13 @@ const BoardPage = () => {
           )}
         </Box>
       </LocalizationProvider>
+
+      {openCreateStoryDialog && (
+        <CreateStoryDialog
+          openCreateStoryDialog={openCreateStoryDialog}
+          setOpenCreateStoryDialog={setOpenCreateStoryDialog}
+        />
+      )}
     </Box>
   );
 };

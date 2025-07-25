@@ -2,7 +2,7 @@ import React from "react";
 import { Card, Typography, Stack, Box, useTheme } from "@mui/material";
 import ChevronRightIcon from "../assets/icons/ChevronRight";
 
-const QuickActions = ({ id, title, link, iconColor, icon }) => {
+const QuickActions = ({ id, title, link, iconColor, icon, onClick }) => {
   const theme = useTheme();
 
   return (
@@ -32,6 +32,7 @@ const QuickActions = ({ id, title, link, iconColor, icon }) => {
             opacity: 0.2,
           },
         }}
+        onClick={onClick}
       >
         <Stack flexDirection="row" gap={2}>
           <Stack>
