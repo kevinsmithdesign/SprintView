@@ -124,7 +124,7 @@ const theme = createTheme({
             background: "#F5F9FC",
           },
           "& .MuiOutlinedInput-input": {
-            padding: "10px 10px",
+            // padding: "10px 10px",
             fontSize: "14px",
           },
         },
@@ -202,6 +202,20 @@ const theme = createTheme({
         bar: {
           borderRadius: 6,
           backgroundColor: "#77B8A0",
+        },
+      },
+    },
+    MuiDialog: {
+      styleOverrides: {
+        paper: {
+          padding: "1rem", // 👈 change this to whatever padding you want
+        },
+      },
+    },
+    MuiDialogTitle: {
+      styleOverrides: {
+        root: {
+          fontWeight: "bold",
         },
       },
     },
