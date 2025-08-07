@@ -130,6 +130,13 @@ const theme = createTheme({
         },
       },
     },
+    MuiSelect: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "#F5F9FC",
+        },
+      },
+    },
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
