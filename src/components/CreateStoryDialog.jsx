@@ -51,9 +51,9 @@ export default function BasicModal({
   };
 
   const priorityConfig = {
-    High: { color: "#ef4444", bg: "#fef2f2" },
-    Medium: { color: "#f59e0b", bg: "#fffbeb" },
-    Low: { color: "#10b981", bg: "#f0fdf4" },
+    High: { color: "#F16362", bg: "#fef2f2" },
+    Medium: { color: "#FCD98E", bg: "#fffbeb" },
+    Low: { color: "#77B8A0", bg: "#f0fdf4" },
   };
 
   const roleConfig = {
@@ -72,6 +72,7 @@ export default function BasicModal({
       PaperProps={{
         sx: {
           bgcolor: "#F5F9FC",
+          padding: 0,
         },
       }}
     >
@@ -117,78 +118,89 @@ export default function BasicModal({
                 background: "#fff",
               }}
             >
-              <Stack spacing={4}>
+              <Stack spacing={3}>
                 {/* Story Information */}
                 <Box>
                   <Typography
-                    variant="h6"
+                    variant="h5"
                     fontWeight="600"
                     gutterBottom
-                    sx={{ color: "#1e293b", mb: 2 }}
+                    sx={{ color: "#1e293b", mb: 3 }}
                   >
                     Story Information
                   </Typography>
 
                   <Stack spacing={3}>
-                    <TextField
-                      label="Title"
-                      placeholder="Enter story title"
-                      fullWidth
-                      required
-                      value={storyData.title}
-                      onChange={handleChange("title")}
-                      //   sx={{
-                      //     "& .MuiOutlinedInput-root": {
-                      //       borderRadius: 1.5,
-                      //       "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                      //         borderColor: "#6366f1",
-                      //         borderWidth: 2,
-                      //       },
-                      //     },
-                      //     "& .MuiInputLabel-root.Mui-focused": {
-                      //       color: "#6366f1",
-                      //     },
-                      //   }}
-                    />
+                    <Stack>
+                      <Typography fontWeight="bold" mb={0.5}>
+                        Title
+                      </Typography>
+                      <TextField
+                        placeholder="Enter story title"
+                        fullWidth
+                        required
+                        value={storyData.title}
+                        onChange={handleChange("title")}
+                        // sx={{
+                        //   "& .MuiOutlinedInput-root": {
+                        //     borderRadius: 1.5,
+                        //     "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                        //       borderColor: "#6366f1",
+                        //       borderWidth: 2,
+                        //     },
+                        //   },
+                        //   "& .MuiInputLabel-root.Mui-focused": {
+                        //     color: "#6366f1",
+                        //   },
+                        // }}
+                      />
+                    </Stack>
 
-                    <TextField
-                      label="Description"
-                      placeholder="Describe the user story"
-                      fullWidth
-                      multiline
-                      rows={3}
-                      value={storyData.description}
-                      onChange={handleChange("description")}
-                      //   sx={{
-                      //     "& .MuiOutlinedInput-root": {
-                      //       borderRadius: 1.5,
-                      //       "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                      //         borderColor: "#6366f1",
-                      //         borderWidth: 2,
-                      //       },
-                      //     },
-                      //     "& .MuiInputLabel-root.Mui-focused": {
-                      //       color: "#6366f1",
-                      //     },
-                      //   }}
-                    />
+                    <Stack>
+                      <Typography fontWeight="bold" mb={0.5}>
+                        Description
+                      </Typography>
+                      <TextField
+                        placeholder="Describe the user story"
+                        fullWidth
+                        multiline
+                        rows={3}
+                        value={storyData.description}
+                        onChange={handleChange("description")}
+                        //   sx={{
+                        //     "& .MuiOutlinedInput-root": {
+                        //       borderRadius: 1.5,
+                        //       "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                        //         borderColor: "#6366f1",
+                        //         borderWidth: 2,
+                        //       },
+                        //     },
+                        //     "& .MuiInputLabel-root.Mui-focused": {
+                        //       color: "#6366f1",
+                        //     },
+                        //   }}
+                      />
+                    </Stack>
                   </Stack>
                 </Box>
 
                 {/* Story Details */}
                 <Box>
-                  <Typography
-                    variant="h6"
+                  {/* <Typography
+                    variant="h5"
                     fontWeight="600"
                     gutterBottom
-                    sx={{ color: "#1e293b", mb: 2 }}
+                    sx={{ color: "#1e293b", mb: 3 }}
                   >
                     Story Details
-                  </Typography>
+                  </Typography> */}
 
                   <Grid container spacing={3}>
                     {/* Assignee */}
                     <Grid size={{ xs: 12, md: 6 }}>
+                      <Typography fontWeight="bold" mb={0.5}>
+                        Assignee
+                      </Typography>
                       <FormControl fullWidth>
                         <InputLabel>Assignee</InputLabel>
                         <Select
@@ -236,6 +248,9 @@ export default function BasicModal({
 
                     {/* Priority */}
                     <Grid size={{ xs: 12, md: 6 }}>
+                      <Typography fontWeight="bold" mb={0.5}>
+                        Priority
+                      </Typography>
                       <FormControl fullWidth>
                         <InputLabel>Priority</InputLabel>
                         <Select
@@ -278,6 +293,9 @@ export default function BasicModal({
 
                     {/* Story Points */}
                     <Grid size={{ xs: 12, md: 6 }}>
+                      <Typography fontWeight="bold" mb={0.5}>
+                        Story Points
+                      </Typography>
                       <FormControl fullWidth>
                         <InputLabel>Story Points</InputLabel>
                         <Select
@@ -302,6 +320,9 @@ export default function BasicModal({
 
                     {/* Role */}
                     <Grid size={{ xs: 12, md: 6 }}>
+                      <Typography fontWeight="bold" mb={0.5}>
+                        Role
+                      </Typography>
                       <FormControl fullWidth>
                         <InputLabel>Role</InputLabel>
                         <Select
@@ -335,6 +356,9 @@ export default function BasicModal({
 
                     {/* Timeline */}
                     <Grid size={{ xs: 12 }}>
+                      <Typography fontWeight="bold" mb={0.5}>
+                        Timeline
+                      </Typography>
                       <FormControl fullWidth>
                         <InputLabel>Timeline</InputLabel>
                         <Select
@@ -479,10 +503,19 @@ export default function BasicModal({
           //   mt: 4,
           //   pt: 4,
           borderTop: "1px solid #e2e8f0",
+          background: "#fff",
+          position: "fixed",
+          bottom: 0,
+          width: "100%",
         }}
       >
         <Container>
-          <Box>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "flex-end",
+            }}
+          >
             <Button
               onClick={handleClose}
               variant="outlined"
