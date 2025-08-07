@@ -37,6 +37,7 @@ export default function ScheduleMeetingDialog({
     meetingType: "",
     attendees: "",
     location: "",
+    color: "#3B82F6", // Default blue color
   });
 
   const handleChange = (field) => (event) => {
@@ -66,6 +67,7 @@ export default function ScheduleMeetingDialog({
         meetingType: "",
         attendees: "",
         location: "",
+        color: "#3B82F6",
       });
     }
     handleClose();
@@ -253,6 +255,43 @@ export default function ScheduleMeetingDialog({
                           value={meetingData.location}
                           onChange={handleChange("location")}
                         />
+                      </Stack>
+
+                      <Stack>
+                        <Typography fontWeight="bold" mb={0.5}>
+                          Meeting Color
+                        </Typography>
+                        <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}>
+                          {[
+                            { name: "Blue", value: "#3B82F6" },
+                            { name: "Green", value: "#10B981" },
+                            { name: "Purple", value: "#8B5CF6" },
+                            { name: "Orange", value: "#F59E0B" },
+                            { name: "Red", value: "#EF4444" },
+                            { name: "Pink", value: "#EC4899" },
+                            { name: "Teal", value: "#14B8A6" },
+                            { name: "Indigo", value: "#6366F1" },
+                          ].map((color) => (
+                            <Box
+                              key={color.value}
+                              onClick={() => setMeetingData(prev => ({ ...prev, color: color.value }))}
+                              sx={{
+                                width: 40,
+                                height: 40,
+                                borderRadius: "8px",
+                                backgroundColor: color.value,
+                                cursor: "pointer",
+                                border: meetingData.color === color.value ? "3px solid #1e293b" : "2px solid #e2e8f0",
+                                transition: "all 0.2s ease",
+                                "&:hover": {
+                                  transform: "scale(1.1)",
+                                  boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+                                },
+                              }}
+                              title={color.name}
+                            />
+                          ))}
+                        </Box>
                       </Stack>
                     </Stack>
                   </Box>

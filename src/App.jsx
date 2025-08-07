@@ -26,9 +26,18 @@ function App() {
 function AppContent() {
   const theme = useTheme();
   const [showAssistant, setShowAssistant] = useState(false);
+  const [meetings, setMeetings] = useState([]);
 
   const toggleAssistant = () => {
     setShowAssistant((prev) => !prev);
+  };
+
+  const handleAddMeeting = (meetingData) => {
+    const newMeeting = {
+      id: Date.now(),
+      ...meetingData,
+    };
+    setMeetings(prev => [...prev, newMeeting]);
   };
 
   const buttonStyle = {
@@ -106,8 +115,8 @@ function AppContent() {
 
       <Routes>
         <Route path="/" element={<Navigate to="/board" replace />} />
-        <Route path="/board" element={<BoardPage />} />
-        <Route path="/calendar" element={<CalendarPage />} />
+        <Route path="/board" element={<BoardPage onAddMeeting={handleAddMeeting} />} />
+        <Route path="/calendar" element={<CalendarPage meetings={meetings} />} />
         <Route path="/message" element={<MessagePage />} />
         <Route path="/analytics" element={<AnalyticsPage />} />
       </Routes>

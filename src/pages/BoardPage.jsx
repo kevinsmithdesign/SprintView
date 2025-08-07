@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router";
 import dayjs from "dayjs";
 import { Grid, Container, Box, Typography, Card } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
@@ -28,10 +29,12 @@ import FireIcon from "../assets/icons/FireIcon";
 import CreateStoryDialog from "../components/CreateStoryDialog";
 import ScheduleMeetingDialog from "../components/ScheduleMeetingDialog";
 
-const BoardPage = () => {
+const BoardPage = ({ onAddMeeting }) => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("sprint");
   const [openCreateStoryDialog, setOpenCreateStoryDialog] = useState(false);
-  const [openScheduleMeetingDialog, setOpenScheduleMeetingDialog] = useState(false);
+  const [openScheduleMeetingDialog, setOpenScheduleMeetingDialog] =
+    useState(false);
   const [stories, setStories] = useState([
     {
       id: 1,
@@ -43,7 +46,7 @@ const BoardPage = () => {
         { src: User6, alt: "User 6" },
         { src: User1, alt: "User 1" },
       ],
-      status: "TODO"
+      status: "TODO",
     },
     {
       id: 2,
@@ -52,7 +55,7 @@ const BoardPage = () => {
       label: "UI Design",
       variant: "ui-design",
       avatars: [{ src: User6, alt: "User 6" }],
-      status: "TODO"
+      status: "TODO",
     },
     {
       id: 3,
@@ -64,8 +67,8 @@ const BoardPage = () => {
         { src: User4, alt: "User 4" },
         { src: User2, alt: "User 2" },
       ],
-      status: "TODO"
-    }
+      status: "TODO",
+    },
   ]);
 
   const createStoryBtn = () => {
@@ -98,23 +101,31 @@ const BoardPage = () => {
       title: storyData.title,
       commentCount: "0",
       label: storyData.role || "General",
-      variant: storyData.role ? storyData.role.toLowerCase().replace(/[^a-z0-9]/g, '-') : "general",
-      avatars: storyData.assignee ? [{ src: User1, alt: storyData.assignee }] : [],
+      variant: storyData.role
+        ? storyData.role.toLowerCase().replace(/[^a-z0-9]/g, "-")
+        : "general",
+      avatars: storyData.assignee
+        ? [{ src: User1, alt: storyData.assignee }]
+        : [],
       status: storyData.timeline === "Backlog" ? "BACKLOG" : "TODO",
       description: storyData.description,
       priority: storyData.priority,
       points: storyData.points,
-      timeline: storyData.timeline
+      timeline: storyData.timeline,
     };
-    
+
     // Add new story to the beginning of the array (top of list)
-    setStories(prevStories => [newStory, ...prevStories]);
+    setStories((prevStories) => [newStory, ...prevStories]);
   };
 
   const handleScheduleMeeting = (meetingData) => {
     console.log("Meeting scheduled:", meetingData);
-    // Here you would typically save the meeting to your backend/calendar
-    // For now, we'll just log it
+    // Add meeting to the centralized state via the callback
+    if (onAddMeeting) {
+      onAddMeeting(meetingData);
+    }
+    // Redirect to calendar page to show the scheduled meeting
+    navigate("/calendar");
   };
 
   const meetings = [
@@ -257,8 +268,8 @@ const BoardPage = () => {
                     TODO
                   </Typography>
                   {stories
-                    .filter(story => story.status === "TODO")
-                    .map(story => (
+                    .filter((story) => story.status === "TODO")
+                    .map((story) => (
                       <TaskCard
                         key={story.id}
                         title={story.title}
@@ -267,8 +278,7 @@ const BoardPage = () => {
                         variant={story.variant}
                         avatars={story.avatars}
                       />
-                    ))
-                  }
+                    ))}
                 </Grid>
                 <Grid size={{ xs: 12, md: 6, lg: 3 }}>
                   <Typography fontWeight="bold" mb={1.5}>
@@ -366,8 +376,8 @@ const BoardPage = () => {
           ) : (
             <Container>
               {stories
-                .filter(story => story.status === "BACKLOG")
-                .map(story => (
+                .filter((story) => story.status === "BACKLOG")
+                .map((story) => (
                   <TaskCard
                     key={story.id}
                     title={story.title}
@@ -376,10 +386,10 @@ const BoardPage = () => {
                     variant={story.variant}
                     avatars={story.avatars}
                   />
-                ))
-              }
+                ))}
               {/* Show default tasks if no backlog stories */}
-              {stories.filter(story => story.status === "BACKLOG").length === 0 && (
+              {stories.filter((story) => story.status === "BACKLOG").length ===
+                0 && (
                 <>
                   <Card sx={{ background: "white", mb: 0.5 }}>Task 1</Card>
                   <Card sx={{ background: "white", mb: 0.5 }}>Task 2</Card>

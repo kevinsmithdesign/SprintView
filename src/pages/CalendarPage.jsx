@@ -13,7 +13,7 @@ import TodaysMeetingsCard from "../components/TodaysMeetingsCard";
 import CalendarSm from "../components/CalendarSm";
 import CalendarLg from "../components/CalendarLg";
 
-const CalendarPage = () => {
+const CalendarPage = ({ meetings = [] }) => {
   // Initialize with current date
   const [currentDate, setCurrentDate] = useState(dayjs());
   const [selectedDate, setSelectedDate] = useState(dayjs());
@@ -44,6 +44,7 @@ const CalendarPage = () => {
           <CalendarLg 
             currentDate={currentDate}
             selectedDate={selectedDate}
+            meetings={meetings}
           />
         </Grid>
       </Grid>
