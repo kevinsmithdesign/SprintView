@@ -26,10 +26,12 @@ import WarningCircleIcon from "../assets/icons/WarningCircleIcon";
 import FireIcon from "../assets/icons/FireIcon";
 
 import CreateStoryDialog from "../components/CreateStoryDialog";
+import ScheduleMeetingDialog from "../components/ScheduleMeetingDialog";
 
 const BoardPage = () => {
   const [activeTab, setActiveTab] = useState("sprint");
   const [openCreateStoryDialog, setOpenCreateStoryDialog] = useState(false);
+  const [openScheduleMeetingDialog, setOpenScheduleMeetingDialog] = useState(false);
   const [stories, setStories] = useState([
     {
       id: 1,
@@ -71,7 +73,7 @@ const BoardPage = () => {
   };
 
   const scheduleMeetingBtn = () => {
-    console.log("schedule meeting");
+    setOpenScheduleMeetingDialog(true);
   };
 
   const planningPokerBtn = () => {
@@ -107,6 +109,12 @@ const BoardPage = () => {
     
     // Add new story to the beginning of the array (top of list)
     setStories(prevStories => [newStory, ...prevStories]);
+  };
+
+  const handleScheduleMeeting = (meetingData) => {
+    console.log("Meeting scheduled:", meetingData);
+    // Here you would typically save the meeting to your backend/calendar
+    // For now, we'll just log it
   };
 
   const meetings = [
@@ -388,6 +396,14 @@ const BoardPage = () => {
           openCreateStoryDialog={openCreateStoryDialog}
           setOpenCreateStoryDialog={setOpenCreateStoryDialog}
           onCreateStory={handleCreateStory}
+        />
+      )}
+
+      {openScheduleMeetingDialog && (
+        <ScheduleMeetingDialog
+          openScheduleMeetingDialog={openScheduleMeetingDialog}
+          setOpenScheduleMeetingDialog={setOpenScheduleMeetingDialog}
+          onScheduleMeeting={handleScheduleMeeting}
         />
       )}
     </Box>

@@ -9,13 +9,14 @@ import {
   LinearProgress,
   Button,
 } from "@mui/material";
+import dayjs from "dayjs";
 import PlanningIcon from "../assets/icons/PlanningIcon";
 import StandUpIcon from "../assets/icons/StandUpIcon";
 import RetroIcon from "../assets/icons/RetroIcon";
 import ArrowUpLeftIcon from "../assets/icons/ArrowUpLeftIcon";
 import ChevronRightIcon from "../assets/icons/ChevronRight";
 
-const TodaysMeetingsCard = ({ id, title, link, iconColor }) => {
+const TodaysMeetingsCard = ({ selectedDate }) => {
   const theme = useTheme();
 
   const meetings = [
@@ -46,7 +47,12 @@ const TodaysMeetingsCard = ({ id, title, link, iconColor }) => {
     <Card sx={{ mb: 6 }}>
       <Stack flexDirection="row" alignItems="center" mb={2}>
         <Stack flexGrow={1}>
-          <Typography fontWeight="bold">TODAY'S MEETINGS</Typography>
+          <Typography fontWeight="bold">
+            {selectedDate && dayjs(selectedDate).isSame(dayjs(), 'day') 
+              ? "TODAY'S MEETINGS" 
+              : `${selectedDate.format('MMM D').toUpperCase()} MEETINGS`
+            }
+          </Typography>
         </Stack>
         <Box
           sx={{

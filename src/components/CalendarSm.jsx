@@ -1,22 +1,38 @@
-import React, { useState } from "react";
+import React from "react";
 import { Card, Stack, Box, Typography, useTheme } from "@mui/material";
+import dayjs from "dayjs";
 
 import LeftIcon from "../assets/icons/LeftIcon";
 import RightIcon from "../assets/icons/RightIcon";
 import ClockIcon from "../assets/icons/ClockIcon";
-const CalendarSm = () => {
+
+const CalendarSm = ({ currentDate, selectedDate, onDateSelect, onMonthChange }) => {
   const theme = useTheme();
-  const [selectedDate, setSelectedDate] = useState(16); // default to 16th
 
   const daysOfWeek = ["MON", "TUES", "WED", "THUR", "FRI", "SAT", "SUN"];
 
-  // Example: June 2025 starts on Sunday → we'll align accordingly.
-  const monthDays = Array.from({ length: 30 }, (_, i) => i + 1);
-  const firstDayOffset = 0; // Adjust if June starts on a different weekday
+  // Get the number of days in the current month
+  const daysInMonth = currentDate.daysInMonth();
+  const monthDays = Array.from({ length: daysInMonth }, (_, i) => i + 1);
+  
+  // Get the first day of the month (0 = Sunday, 1 = Monday, etc.)
+  const firstDayOfMonth = currentDate.startOf('month').day();
+  // Adjust for Monday start (0 = Monday, 6 = Sunday)
+  const firstDayOffset = firstDayOfMonth === 0 ? 6 : firstDayOfMonth - 1;
 
   const handleDateClick = (date) => {
-    setSelectedDate(date);
-    console.log(`Selected date: ${date}`);
+    const newSelectedDate = currentDate.date(date);
+    onDateSelect(newSelectedDate);
+  };
+
+  const handlePrevMonth = () => {
+    const prevMonth = currentDate.subtract(1, 'month');
+    onMonthChange(prevMonth);
+  };
+
+  const handleNextMonth = () => {
+    const nextMonth = currentDate.add(1, 'month');
+    onMonthChange(nextMonth);
   };
 
   return (
@@ -24,9 +40,10 @@ const CalendarSm = () => {
       <Box sx={{ background: "", p: "32px 32px 8px 32px" }}>
         <Stack direction="row" alignItems="center" mb={2}>
           <Typography fontWeight="bold" flexGrow={1}>
-            JUNE 2025
+            {currentDate.format('MMMM YYYY').toUpperCase()}
           </Typography>
           <Box
+            onClick={handlePrevMonth}
             sx={{
               height: "40px",
               width: "40px",
@@ -43,6 +60,7 @@ const CalendarSm = () => {
             <LeftIcon />
           </Box>
           <Box
+            onClick={handleNextMonth}
             sx={{
               height: "40px",
               width: "40px",
@@ -94,7 +112,7 @@ const CalendarSm = () => {
               onClick={() => handleDateClick(date)}
               sx={{
                 background:
-                  selectedDate === date
+                  selectedDate.date() === date && selectedDate.month() === currentDate.month()
                     ? theme.palette.primary.main
                     : "transparent",
                 borderRadius: "50%",
@@ -107,7 +125,7 @@ const CalendarSm = () => {
                 margin: "0 auto",
                 "&:hover": {
                   backgroundColor:
-                    selectedDate === date
+                    selectedDate.date() === date && selectedDate.month() === currentDate.month()
                       ? theme.palette.primary.dark
                       : theme.palette.action.hover,
                 },
@@ -116,8 +134,8 @@ const CalendarSm = () => {
               <Typography
                 variant="body2"
                 sx={{
-                  color: selectedDate === date ? "#fff" : "#000",
-                  fontWeight: selectedDate === date ? "bold" : "normal",
+                  color: selectedDate.date() === date && selectedDate.month() === currentDate.month() ? "#fff" : "#000",
+                  fontWeight: selectedDate.date() === date && selectedDate.month() === currentDate.month() ? "bold" : "normal",
                 }}
               >
                 {date}

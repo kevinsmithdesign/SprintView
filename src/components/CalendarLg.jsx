@@ -1,15 +1,6 @@
 import React from "react";
 import { Box, Typography, useTheme } from "@mui/material";
-
-const days = [
-  { name: "MON", date: 17 },
-  { name: "TUES", date: 18 },
-  { name: "WED", date: 19 },
-  { name: "THUR", date: 20 },
-  { name: "FRI", date: 21 },
-  { name: "SAT", date: 22 },
-  { name: "SUN", date: 23 },
-];
+import dayjs from "dayjs";
 
 const times = Array.from({ length: 24 }, (_, i) => {
   const hour = i % 12 || 12;
@@ -17,8 +8,19 @@ const times = Array.from({ length: 24 }, (_, i) => {
   return `${hour} ${ampm}`;
 });
 
-export default function CalendarGrid() {
+export default function CalendarGrid({ currentDate, selectedDate }) {
   const theme = useTheme();
+
+  // Generate the current week based on selected date
+  const startOfWeek = selectedDate.startOf('week').add(1, 'day'); // Start from Monday
+  const days = Array.from({ length: 7 }, (_, i) => {
+    const date = startOfWeek.add(i, 'day');
+    return {
+      name: date.format('ddd').toUpperCase(),
+      date: date.date(),
+      fullDate: date,
+    };
+  });
 
   return (
     <Box
