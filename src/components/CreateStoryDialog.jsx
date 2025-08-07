@@ -24,6 +24,7 @@ import {
 export default function BasicModal({
   openCreateStoryDialog,
   setOpenCreateStoryDialog,
+  onCreateStory,
 }) {
   const handleClose = () => setOpenCreateStoryDialog(false);
   const theme = useTheme();
@@ -46,7 +47,19 @@ export default function BasicModal({
   };
 
   const handleSubmit = () => {
-    console.log("Submitting story:", storyData);
+    if (storyData.title.trim() && onCreateStory) {
+      onCreateStory(storyData);
+      // Reset form
+      setStoryData({
+        title: "",
+        description: "",
+        assignee: "",
+        priority: "",
+        points: "",
+        role: "",
+        timeline: "",
+      });
+    }
     handleClose();
   };
 

@@ -29,8 +29,42 @@ import CreateStoryDialog from "../components/CreateStoryDialog";
 
 const BoardPage = () => {
   const [activeTab, setActiveTab] = useState("sprint");
-
   const [openCreateStoryDialog, setOpenCreateStoryDialog] = useState(false);
+  const [stories, setStories] = useState([
+    {
+      id: 1,
+      title: "High Fidelity Checkout Mockups",
+      commentCount: "2",
+      label: "UI Design",
+      variant: "ui-design",
+      avatars: [
+        { src: User6, alt: "User 6" },
+        { src: User1, alt: "User 1" },
+      ],
+      status: "TODO"
+    },
+    {
+      id: 2,
+      title: "High Fidelity Checkout Mockups",
+      commentCount: "2",
+      label: "UI Design",
+      variant: "ui-design",
+      avatars: [{ src: User6, alt: "User 6" }],
+      status: "TODO"
+    },
+    {
+      id: 3,
+      title: "High Fidelity Checkout Mockups",
+      commentCount: "2",
+      label: "UI Design",
+      variant: "ui-design",
+      avatars: [
+        { src: User4, alt: "User 4" },
+        { src: User2, alt: "User 2" },
+      ],
+      status: "TODO"
+    }
+  ]);
 
   const createStoryBtn = () => {
     setOpenCreateStoryDialog(true);
@@ -54,6 +88,25 @@ const BoardPage = () => {
 
   const filterBoardBtn = () => {
     console.log("filter board");
+  };
+
+  const handleCreateStory = (storyData) => {
+    const newStory = {
+      id: Date.now(), // Simple ID generation
+      title: storyData.title,
+      commentCount: "0",
+      label: storyData.role || "General",
+      variant: storyData.role ? storyData.role.toLowerCase().replace(/[^a-z0-9]/g, '-') : "general",
+      avatars: storyData.assignee ? [{ src: User1, alt: storyData.assignee }] : [],
+      status: storyData.timeline === "backlog" ? "BACKLOG" : "TODO",
+      description: storyData.description,
+      priority: storyData.priority,
+      points: storyData.points,
+      timeline: storyData.timeline
+    };
+    
+    // Add new story to the beginning of the array (top of list)
+    setStories(prevStories => [newStory, ...prevStories]);
   };
 
   const meetings = [
@@ -195,33 +248,19 @@ const BoardPage = () => {
                   <Typography fontWeight="bold" mb={1.5}>
                     TODO
                   </Typography>
-                  <TaskCard
-                    title="High Fidelity Checkout Mockups"
-                    commentCount="2"
-                    label="UI Design"
-                    variant="ui-design"
-                    avatars={[
-                      { src: User6, alt: "User 6" },
-                      { src: User1, alt: "User 1" },
-                    ]}
-                  />
-                  <TaskCard
-                    title="High Fidelity Checkout Mockups"
-                    commentCount="2"
-                    label="UI Design"
-                    variant="ui-design"
-                    avatars={[{ src: User6, alt: "User 6" }]}
-                  />
-                  <TaskCard
-                    title="High Fidelity Checkout Mockups"
-                    commentCount="2"
-                    label="UI Design"
-                    variant="ui-design"
-                    avatars={[
-                      { src: User4, alt: "User 4" },
-                      { src: User2, alt: "User 2" },
-                    ]}
-                  />
+                  {stories
+                    .filter(story => story.status === "TODO")
+                    .map(story => (
+                      <TaskCard
+                        key={story.id}
+                        title={story.title}
+                        commentCount={story.commentCount}
+                        label={story.label}
+                        variant={story.variant}
+                        avatars={story.avatars}
+                      />
+                    ))
+                  }
                 </Grid>
                 <Grid size={{ xs: 12, md: 6, lg: 3 }}>
                   <Typography fontWeight="bold" mb={1.5}>
@@ -330,6 +369,7 @@ const BoardPage = () => {
         <CreateStoryDialog
           openCreateStoryDialog={openCreateStoryDialog}
           setOpenCreateStoryDialog={setOpenCreateStoryDialog}
+          onCreateStory={handleCreateStory}
         />
       )}
     </Box>
