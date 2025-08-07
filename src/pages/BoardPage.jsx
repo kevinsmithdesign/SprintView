@@ -98,7 +98,7 @@ const BoardPage = () => {
       label: storyData.role || "General",
       variant: storyData.role ? storyData.role.toLowerCase().replace(/[^a-z0-9]/g, '-') : "general",
       avatars: storyData.assignee ? [{ src: User1, alt: storyData.assignee }] : [],
-      status: storyData.timeline === "backlog" ? "BACKLOG" : "TODO",
+      status: storyData.timeline === "Backlog" ? "BACKLOG" : "TODO",
       description: storyData.description,
       priority: storyData.priority,
       points: storyData.points,
@@ -357,9 +357,27 @@ const BoardPage = () => {
             </Container>
           ) : (
             <Container>
-              <Card sx={{ background: "white", mb: 0.5 }}>Task 1</Card>
-              <Card sx={{ background: "white", mb: 0.5 }}>Task 2</Card>
-              <Card sx={{ background: "white", mb: 0.5 }}>Task 3</Card>
+              {stories
+                .filter(story => story.status === "BACKLOG")
+                .map(story => (
+                  <TaskCard
+                    key={story.id}
+                    title={story.title}
+                    commentCount={story.commentCount}
+                    label={story.label}
+                    variant={story.variant}
+                    avatars={story.avatars}
+                  />
+                ))
+              }
+              {/* Show default tasks if no backlog stories */}
+              {stories.filter(story => story.status === "BACKLOG").length === 0 && (
+                <>
+                  <Card sx={{ background: "white", mb: 0.5 }}>Task 1</Card>
+                  <Card sx={{ background: "white", mb: 0.5 }}>Task 2</Card>
+                  <Card sx={{ background: "white", mb: 0.5 }}>Task 3</Card>
+                </>
+              )}
             </Container>
           )}
         </Box>

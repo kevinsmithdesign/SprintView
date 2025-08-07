@@ -372,7 +372,6 @@ export default function BasicModal({
                         >
                           <MenuItem value="Backlog">Backlog</MenuItem>
                           <MenuItem value="Sprint 1">Sprint 1</MenuItem>
-                          <MenuItem value="Sprint 2">Sprint 2</MenuItem>
                         </Select>
                       </FormControl>
                     </Grid>
