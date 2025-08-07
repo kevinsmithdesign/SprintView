@@ -329,25 +329,10 @@ export default function BasicModal({
                           value={storyData.role}
                           onChange={handleChange("role")}
                           label="Role"
-                          //   sx={{
-                          //     borderRadius: 1.5,
-                          //     "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                          //       borderColor: "#6366f1",
-                          //     },
-                          //   }}
                         >
                           {Object.entries(roleConfig).map(([role, config]) => (
                             <MenuItem key={role} value={role}>
-                              <Chip
-                                label={role}
-                                size="small"
-                                sx={{
-                                  bgcolor: config.bg,
-                                  color: config.color,
-                                  fontWeight: 500,
-                                  border: `1px solid ${config.color}40`,
-                                }}
-                              />
+                              <Chip label={role} size="small" />
                             </MenuItem>
                           ))}
                         </Select>
@@ -388,7 +373,7 @@ export default function BasicModal({
           <Grid size={{ xs: 12, lg: 6 }}>
             <Card sx={{ background: "#fff" }}>
               <Typography
-                variant="h6"
+                variant="h5"
                 fontWeight="600"
                 gutterBottom
                 sx={{ color: "#1e293b" }}
@@ -397,23 +382,27 @@ export default function BasicModal({
               </Typography>
 
               <Box sx={{ mt: 3 }}>
-                <Typography variant="subtitle2" color="#64748b" gutterBottom>
+                <Typography fontWeight="bold" mb={0.5}>
                   Title
                 </Typography>
                 <Typography
-                  variant="body1"
+                  variant="body2"
                   fontWeight="500"
-                  sx={{ mb: 2, minHeight: 24, color: "#1e293b" }}
+                  sx={{
+                    mb: 2,
+                    minHeight: 24,
+                    color: theme.palette.secondary.main,
+                  }}
                 >
                   {storyData.title || "Untitled Story"}
                 </Typography>
 
-                <Typography variant="subtitle2" color="#64748b" gutterBottom>
+                <Typography fontWeight="bold" mb={0.5}>
                   Description
                 </Typography>
                 <Typography
                   variant="body2"
-                  sx={{ mb: 3, minHeight: 40, color: "#64748b" }}
+                  sx={{ mb: 3, color: theme.palette.secondary.main }}
                 >
                   {storyData.description || "No description provided"}
                 </Typography>
@@ -448,12 +437,12 @@ export default function BasicModal({
                     <Chip
                       label={storyData.role}
                       size="small"
-                      sx={{
-                        bgcolor: roleConfig[storyData.role]?.bg,
-                        color: roleConfig[storyData.role]?.color,
-                        fontWeight: 500,
-                        fontSize: "0.75rem",
-                      }}
+                      //   sx={{
+                      //     bgcolor: roleConfig[storyData.role]?.bg,
+                      //     color: roleConfig[storyData.role]?.color,
+                      //     fontWeight: 500,
+                      //     fontSize: "0.75rem",
+                      //   }}
                     />
                   )}
                 </Box>
@@ -500,8 +489,6 @@ export default function BasicModal({
           display: "flex",
           justifyContent: "flex-end",
           p: 4,
-          //   mt: 4,
-          //   pt: 4,
           borderTop: "1px solid #e2e8f0",
           background: "#fff",
           position: "fixed",
@@ -521,11 +508,8 @@ export default function BasicModal({
               variant="outlined"
               size="large"
               sx={{
-                // borderRadius: 1.5,
-                // px: 4,
                 mr: 2,
                 textTransform: "none",
-                // fontWeight: 500,
                 borderColor: "#d1d5db",
                 color: "#6b7280",
                 "&:hover": {
@@ -543,14 +527,7 @@ export default function BasicModal({
               disabled={!storyData.title.trim()}
               startIcon={"+"}
               sx={{
-                // borderRadius: 1.5,
-                // px: 4,
                 textTransform: "none",
-                // fontWeight: 600,
-                bgcolor: "#6366f1",
-                "&:hover": {
-                  bgcolor: "#5b5bd6",
-                },
                 "&:disabled": {
                   bgcolor: "#e2e8f0",
                   color: "#94a3b8",
