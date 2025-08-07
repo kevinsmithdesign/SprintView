@@ -116,7 +116,7 @@ function AppContent() {
       <Routes>
         <Route path="/" element={<Navigate to="/board" replace />} />
         <Route path="/board" element={<BoardPage onAddMeeting={handleAddMeeting} />} />
-        <Route path="/calendar" element={<CalendarPage meetings={meetings} />} />
+        <Route path="/calendar" element={<CalendarPage meetings={meetings} onAddMeeting={handleAddMeeting} />} />
         <Route path="/message" element={<MessagePage />} />
         <Route path="/analytics" element={<AnalyticsPage />} />
       </Routes>

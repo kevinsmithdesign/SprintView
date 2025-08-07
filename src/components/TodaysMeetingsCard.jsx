@@ -16,7 +16,7 @@ import RetroIcon from "../assets/icons/RetroIcon";
 import ArrowUpLeftIcon from "../assets/icons/ArrowUpLeftIcon";
 import ChevronRightIcon from "../assets/icons/ChevronRight";
 
-const TodaysMeetingsCard = ({ selectedDate }) => {
+const TodaysMeetingsCard = ({ selectedDate, onScheduleMeeting }) => {
   const theme = useTheme();
 
   const meetings = [
@@ -48,10 +48,9 @@ const TodaysMeetingsCard = ({ selectedDate }) => {
       <Stack flexDirection="row" alignItems="center" mb={2}>
         <Stack flexGrow={1}>
           <Typography fontWeight="bold">
-            {selectedDate && dayjs(selectedDate).isSame(dayjs(), 'day') 
-              ? "TODAY'S MEETINGS" 
-              : `${selectedDate.format('MMM D').toUpperCase()} MEETINGS`
-            }
+            {selectedDate && dayjs(selectedDate).isSame(dayjs(), "day")
+              ? "TODAY'S MEETINGS"
+              : `${selectedDate.format("MMM D").toUpperCase()} MEETINGS`}
           </Typography>
         </Stack>
         <Box
@@ -64,9 +63,9 @@ const TodaysMeetingsCard = ({ selectedDate }) => {
             alignItems: "center",
             justifyContent: "center",
             cursor: "pointer",
-            "&:hover": {
-              background: "#ddd",
-            },
+            // "&:hover": {
+            //   background: "#ddd",
+            // },
           }}
         >
           {/* <ArrowUpLeftIcon /> */}
@@ -137,7 +136,12 @@ const TodaysMeetingsCard = ({ selectedDate }) => {
         ))}
       </Box>
 
-      <Button variant="contained" fullWidth sx={{ mb: 0.5 }}>
+      <Button 
+        variant="contained" 
+        fullWidth 
+        sx={{ mb: 0.5 }}
+        onClick={onScheduleMeeting}
+      >
         Schedule Meeting
       </Button>
       <Button
