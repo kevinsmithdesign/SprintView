@@ -1,5 +1,5 @@
-import React from "react";
-import { Card, Stack, Box, Typography, useTheme } from "@mui/material";
+import React, { useState } from "react";
+import { Card, Stack, Box, Typography, useTheme, Menu, MenuItem, Grid, Select, FormControl } from "@mui/material";
 import dayjs from "dayjs";
 
 import LeftIcon from "../assets/icons/LeftIcon";
@@ -8,6 +8,9 @@ import ClockIcon from "../assets/icons/ClockIcon";
 
 const CalendarSm = ({ currentDate, selectedDate, onDateSelect, onMonthChange }) => {
   const theme = useTheme();
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [selectedYear, setSelectedYear] = useState(currentDate.year());
+  const open = Boolean(anchorEl);
 
   const daysOfWeek = ["MON", "TUES", "WED", "THUR", "FRI", "SAT", "SUN"];
 
@@ -35,11 +38,46 @@ const CalendarSm = ({ currentDate, selectedDate, onDateSelect, onMonthChange }) 
     onMonthChange(nextMonth);
   };
 
+  const handleMonthYearClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleMonthSelect = (month) => {
+    const newDate = dayjs().year(selectedYear).month(month);
+    onMonthChange(newDate);
+    handleClose();
+  };
+
+  const handleYearChange = (event) => {
+    setSelectedYear(event.target.value);
+  };
+
+  const currentYear = dayjs().year();
+  const years = Array.from({ length: 10 }, (_, i) => currentYear - 5 + i);
+  const months = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+
   return (
     <Card sx={{ p: 0 }}>
       <Box sx={{ background: "", p: "32px 32px 8px 32px" }}>
         <Stack direction="row" alignItems="center" mb={2}>
-          <Typography fontWeight="bold" flexGrow={1}>
+          <Typography 
+            fontWeight="bold" 
+            flexGrow={1}
+            onClick={handleMonthYearClick}
+            sx={{
+              cursor: 'pointer',
+              '&:hover': {
+                color: theme.palette.primary.main,
+              }
+            }}
+          >
             {currentDate.format('MMMM YYYY').toUpperCase()}
           </Typography>
           <Box
@@ -155,6 +193,75 @@ const CalendarSm = ({ currentDate, selectedDate, onDateSelect, onMonthChange }) 
           3 Days left in the sprint
         </Typography>{" "}
       </Box>
+
+      {/* Month/Year Picker Menu */}
+      <Menu
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        PaperProps={{
+          sx: {
+            maxHeight: 400,
+            width: 300,
+          },
+        }}
+      >
+        <Box sx={{ p: 2 }}>
+          <Typography variant="h6" sx={{ mb: 2, textAlign: 'center' }}>
+            Select Month & Year
+          </Typography>
+          
+          {/* Year Dropdown */}
+          <FormControl fullWidth sx={{ mb: 2 }}>
+            <Select
+              value={selectedYear}
+              onChange={handleYearChange}
+              size="small"
+            >
+              {years.map((year) => (
+                <MenuItem key={year} value={year}>
+                  {year}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+
+          {/* Month Grid */}
+          <Grid container spacing={1}>
+            {months.map((month, index) => (
+              <Grid item xs={4} key={month}>
+                <Box
+                  onClick={() => handleMonthSelect(index)}
+                  sx={{
+                    p: 1.5,
+                    textAlign: 'center',
+                    cursor: 'pointer',
+                    borderRadius: 1,
+                    backgroundColor: 
+                      currentDate.month() === index && currentDate.year() === selectedYear
+                        ? theme.palette.primary.main
+                        : 'transparent',
+                    color:
+                      currentDate.month() === index && currentDate.year() === selectedYear
+                        ? 'white'
+                        : 'inherit',
+                    '&:hover': {
+                      backgroundColor:
+                        currentDate.month() === index && currentDate.year() === selectedYear
+                          ? theme.palette.primary.dark
+                          : theme.palette.action.hover,
+                    },
+                  }}
+                >
+                  <Typography variant="body2" fontWeight="medium">
+                    {month.substring(0, 3)}
+                  </Typography>
+                </Box>
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
+      </Menu>
     </Card>
   );
 };
