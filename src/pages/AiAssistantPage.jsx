@@ -238,6 +238,7 @@ import SprintProgressIcon from "../assets/icons/SprintProgressIcon";
 import WarningIcon from "../assets/icons/WarningIcon";
 import ChartIcon from "../assets/icons/ChartIcon";
 import TeamWorkloadIcon from "../assets/icons/TeamWorkloadIcon";
+import AiAssistantIcon from "../assets/icons/AiAssistant";
 
 const AiAssistantPage = () => {
   const theme = useTheme();
@@ -384,7 +385,9 @@ const AiAssistantPage = () => {
                         p: 2,
                         borderRadius: 2,
                         backgroundColor:
-                          message.sender === "user" ? "#007bff" : "#2a2a2a",
+                          message.sender === "user"
+                            ? theme.palette.primary.main
+                            : "#2a2a2a",
                         color: "#fff",
                         border:
                           message.sender === "ai"
@@ -402,15 +405,218 @@ const AiAssistantPage = () => {
                 <Box
                   sx={{
                     display: "flex",
+                    flexDirection: "column",
                     alignItems: "center",
                     justifyContent: "center",
                     height: "100%",
                     color: "#888",
+                    px: 3,
                   }}
                 >
-                  <Typography variant="body1">
-                    Start a conversation with your AI assistant...
-                  </Typography>
+                  <Box sx={{ textAlign: "center" }}>
+                    <Box
+                      sx={{
+                        background: theme.palette.primary.main,
+                        width: "60px",
+                        height: "60px",
+                        borderRadius: "50%",
+                        mx: "auto",
+                        mb: 1,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <AiAssistantIcon />
+                    </Box>
+                    <Typography fontWeight="bold" variant="h5" mb={2}>
+                      How can I assist you today?
+                    </Typography>
+
+                    <Box sx={{ maxWidth: "420px", mx: "auto" }}>
+                      <Typography variant="body2" mb={3} color="#8B8E96">
+                        I have access to all your SprintView data including
+                        sprint progress, team conversations, meeting notes, and
+                        board updates. Ask me anything about your Sprint.
+                      </Typography>
+                    </Box>
+                  </Box>
+                  <Grid container spacing={2} sx={{ display: "flex", alignItems: "stretch" }}>
+                    <Grid size={{ xs: 12, md: 4 }} sx={{ display: "flex" }}>
+                      <Card
+                        sx={{
+                          p: 4,
+                          boxShadow: "none",
+                          borderRadius: "16px",
+                          background: "#111",
+                          color: "#fff",
+                          width: "100%",
+                        }}
+                      >
+                        <Typography fontWeight="bold" mb={1}>
+                          Examples
+                        </Typography>
+                        <Card
+                          sx={{
+                            p: 2,
+                            boxShadow: "none",
+                            borderRadius: "8px",
+                            background: "#1b1b1b",
+                            color: "#fff",
+                            mb: 0.5,
+                          }}
+                        >
+                          <Typography variant="body2">
+                            Show me all blockers mentioned in today's standup meeting
+                          </Typography>
+                        </Card>
+                        <Card
+                          sx={{
+                            p: 2,
+                            boxShadow: "none",
+                            borderRadius: "8px",
+                            background: "#1b1b1b",
+                            color: "#fff",
+                            mb: 0.5,
+                          }}
+                        >
+                          <Typography variant="body2">
+                            Which team members are overloaded this current sprint?
+                          </Typography>
+                        </Card>
+                        <Card
+                          sx={{
+                            p: 2,
+                            boxShadow: "none",
+                            borderRadius: "8px",
+                            background: "#1b1b1b",
+                            color: "#fff",
+                            mb: 0.5,
+                          }}
+                        >
+                          <Typography variant="body2">
+                            Create a summary of our recent retrospective meeting decisions
+                          </Typography>
+                        </Card>
+                      </Card>
+                    </Grid>
+                    <Grid size={{ xs: 12, md: 4 }} sx={{ display: "flex" }}>
+                      <Card
+                        sx={{
+                          p: 4,
+                          boxShadow: "none",
+                          borderRadius: "16px",
+                          background: "#111",
+                          color: "#fff",
+                          width: "100%",
+                        }}
+                      >
+                        <Typography fontWeight="bold" mb={1}>
+                          Capabilities
+                        </Typography>
+                        <Card
+                          sx={{
+                            p: 2,
+                            boxShadow: "none",
+                            borderRadius: "8px",
+                            background: "#1b1b1b",
+                            color: "#fff",
+                            mb: 0.5,
+                          }}
+                        >
+                          <Typography variant="body2">
+                            Cross-reference chat discussions with current board status updates
+                          </Typography>
+                        </Card>
+                        <Card
+                          sx={{
+                            p: 2,
+                            boxShadow: "none",
+                            borderRadius: "8px",
+                            background: "#1b1b1b",
+                            color: "#fff",
+                            mb: 0.5,
+                          }}
+                        >
+                          <Typography variant="body2">
+                            Analyze meeting notes for action items and key decisions
+                          </Typography>
+                        </Card>
+                        <Card
+                          sx={{
+                            p: 2,
+                            boxShadow: "none",
+                            borderRadius: "8px",
+                            background: "#1b1b1b",
+                            color: "#fff",
+                            mb: 0.5,
+                          }}
+                        >
+                          <Typography variant="body2">
+                            Track story progress and identify important patterns across sprints
+                          </Typography>
+                        </Card>
+                      </Card>
+                    </Grid>
+                    <Grid size={{ xs: 12, md: 4 }} sx={{ display: "flex" }}>
+                      <Card
+                        sx={{
+                          p: 4,
+                          boxShadow: "none",
+                          borderRadius: "16px",
+                          background: "#111",
+                          color: "#fff",
+                          width: "100%",
+                        }}
+                      >
+                        <Typography fontWeight="bold" mb={1}>
+                          Limitations
+                        </Typography>
+                        <Card
+                          sx={{
+                            p: 2,
+                            boxShadow: "none",
+                            borderRadius: "8px",
+                            background: "#1b1b1b",
+                            color: "#fff",
+                            mb: 0.5,
+                          }}
+                        >
+                          <Typography variant="body2">
+                            Cannot predict external dependencies that are outside team control
+                          </Typography>
+                        </Card>
+                        <Card
+                          sx={{
+                            p: 2,
+                            boxShadow: "none",
+                            borderRadius: "8px",
+                            background: "#1b1b1b",
+                            color: "#fff",
+                            mb: 0.5,
+                          }}
+                        >
+                          <Typography variant="body2">
+                            Cannot replace human judgment for complex project decisions
+                          </Typography>
+                        </Card>
+                        <Card
+                          sx={{
+                            p: 2,
+                            boxShadow: "none",
+                            borderRadius: "8px",
+                            background: "#1b1b1b",
+                            color: "#fff",
+                            mb: 0.5,
+                          }}
+                        >
+                          <Typography variant="body2">
+                            All recommendations require team validation before implementation
+                          </Typography>
+                        </Card>
+                      </Card>
+                    </Grid>
+                  </Grid>
                 </Box>
               )}
             </Box>
@@ -456,7 +662,7 @@ const AiAssistantPage = () => {
                         borderColor: "#555",
                       },
                       "&.Mui-focused": {
-                        borderColor: "#007bff",
+                        borderColor: theme.palette.primary.main,
                       },
                       "& fieldset": {
                         border: "none",
@@ -476,11 +682,11 @@ const AiAssistantPage = () => {
                   onClick={handleSendMessage}
                   sx={{
                     color: "#fff",
-                    backgroundColor: "#007bff",
+                    backgroundColor: theme.palette.primary.main,
                     // borderRadius: 2,
                     p: 1.8,
                     "&:hover": {
-                      backgroundColor: "#0056b3",
+                      backgroundColor: theme.palette.primary.dark,
                     },
                   }}
                 >
