@@ -28,6 +28,7 @@ import FireIcon from "../assets/icons/FireIcon";
 
 import CreateStoryDialog from "../components/CreateStoryDialog";
 import ScheduleMeetingDialog from "../components/ScheduleMeetingDialog";
+import AddBlockerDialog from "../components/AddBlockerDialog";
 
 const BoardPage = ({ onAddMeeting }) => {
   const navigate = useNavigate();
@@ -35,6 +36,7 @@ const BoardPage = ({ onAddMeeting }) => {
   const [openCreateStoryDialog, setOpenCreateStoryDialog] = useState(false);
   const [openScheduleMeetingDialog, setOpenScheduleMeetingDialog] =
     useState(false);
+  const [openAddBlockerDialog, setOpenAddBlockerDialog] = useState(false);
   const [stories, setStories] = useState([
     {
       id: 1,
@@ -84,7 +86,7 @@ const BoardPage = ({ onAddMeeting }) => {
   };
 
   const addBlockerBtn = () => {
-    console.log("add blocker");
+    setOpenAddBlockerDialog(true);
   };
 
   const retroBoardBtn = () => {
@@ -124,8 +126,12 @@ const BoardPage = ({ onAddMeeting }) => {
     if (onAddMeeting) {
       onAddMeeting(meetingData);
     }
-    // Redirect to calendar page to show the scheduled meeting
-    navigate("/calendar");
+  };
+
+  const handleAddBlocker = (blockerData) => {
+    console.log("Blocker added:", blockerData);
+    // Here you could add the blocker to your state or send to API
+    // For now, we'll just log it
   };
 
   const meetings = [
@@ -414,6 +420,14 @@ const BoardPage = ({ onAddMeeting }) => {
           openScheduleMeetingDialog={openScheduleMeetingDialog}
           setOpenScheduleMeetingDialog={setOpenScheduleMeetingDialog}
           onScheduleMeeting={handleScheduleMeeting}
+        />
+      )}
+
+      {openAddBlockerDialog && (
+        <AddBlockerDialog
+          openAddBlockerDialog={openAddBlockerDialog}
+          setOpenAddBlockerDialog={setOpenAddBlockerDialog}
+          onAddBlocker={handleAddBlocker}
         />
       )}
     </Box>

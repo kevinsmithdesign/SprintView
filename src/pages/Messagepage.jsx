@@ -721,7 +721,6 @@ CREATE INDEX idx_users_email ON users(email);`,
               onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
               sx={{
                 "& .MuiOutlinedInput-root": {
-                  py: 1,
                   background: "#fff",
                 },
               }}
@@ -729,15 +728,53 @@ CREATE INDEX idx_users_email ON users(email);`,
                 input: {
                   startAdornment: (
                     <InputAdornment position="start">
-                      <AddDocIcon />
+                      <IconButton
+                        sx={{
+                          border: "1px solid #ddd",
+                          borderRadius: "6px",
+                          p: 0.5,
+                          "&:hover": {
+                            backgroundColor: "#f5f5f5",
+                          },
+                        }}
+                      >
+                        <AddDocIcon />
+                      </IconButton>
                     </InputAdornment>
                   ),
                   endAdornment: (
                     <InputAdornment position="end">
-                      <EmojiIcon />
+                      <IconButton
+                        sx={{
+                          border: "1px solid #ddd",
+                          borderRadius: "6px",
+                          p: 0.5,
+                          mr: 1,
+                          "&:hover": {
+                            backgroundColor: "#f5f5f5",
+                          },
+                        }}
+                      >
+                        <EmojiIcon />
+                      </IconButton>
                       <IconButton
                         onClick={handleSendMessage}
                         disabled={!messageInput.trim()}
+                        sx={{
+                          backgroundColor: theme.palette.primary.main,
+                          color: "white",
+                          border: "1px solid",
+                          borderColor: theme.palette.primary.main,
+                          borderRadius: 1,
+                          p: 0.5,
+                          "&:hover": {
+                            backgroundColor: "primary.dark",
+                          },
+                          "&:disabled": {
+                            backgroundColor: "#ccc",
+                            border: "1px solid #ccc",
+                          },
+                        }}
                       >
                         <SendMsgIcon />
                       </IconButton>

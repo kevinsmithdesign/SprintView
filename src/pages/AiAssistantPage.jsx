@@ -210,7 +210,7 @@
 
 // export default AiAssistantPage;
 
-import React from "react";
+import React, { useState } from "react";
 import {
   Grid,
   Container,
@@ -225,6 +225,8 @@ import {
   IconButton,
   useTheme,
 } from "@mui/material";
+import { motion, AnimatePresence } from "framer-motion";
+import AddDoc from "../assets/icons/AddDoc";
 import DocumentIcon from "../assets/icons/DocumentIcon";
 import AddDocIcon from "../assets/icons/AddDoc";
 import SearchIcon from "../assets/icons/SearchIcon";
@@ -239,6 +241,40 @@ import TeamWorkloadIcon from "../assets/icons/TeamWorkloadIcon";
 
 const AiAssistantPage = () => {
   const theme = useTheme();
+  const [messages, setMessages] = useState([]);
+  const [inputValue, setInputValue] = useState("");
+
+  const handleSendMessage = () => {
+    if (inputValue.trim()) {
+      const newMessage = {
+        id: Date.now(),
+        text: inputValue,
+        sender: "user",
+        timestamp: new Date(),
+      };
+
+      setMessages((prev) => [...prev, newMessage]);
+      setInputValue("");
+
+      // Simulate AI response after a short delay
+      setTimeout(() => {
+        const aiResponse = {
+          id: Date.now() + 1,
+          text: "Thanks for your message! This is a simulated AI response.",
+          sender: "ai",
+          timestamp: new Date(),
+        };
+        setMessages((prev) => [...prev, aiResponse]);
+      }, 1000);
+    }
+  };
+
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault();
+      handleSendMessage();
+    }
+  };
 
   const quickActions = [
     { id: 1, name: "Sprint Progress", icon: <SprintProgressIcon /> },
@@ -310,8 +346,148 @@ const AiAssistantPage = () => {
         </Grid>
 
         <Grid size={{ xs: 12, md: 8 }}>
-          <Box sx={{ background: "", height: "100vh" }}>
-            <Box sx={{ p: 3 }}>Chat interface here</Box>
+          <Box
+            sx={{
+              background: "",
+              height: "100vh",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            {/* Chat messages area */}
+            <Box
+              sx={{
+                flexGrow: 1,
+                p: 3,
+                overflowY: "auto",
+                backgroundColor: "",
+              }}
+            >
+              <AnimatePresence>
+                {messages.map((message) => (
+                  <motion.div
+                    key={message.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.3 }}
+                    style={{
+                      marginBottom: "16px",
+                      display: "flex",
+                      justifyContent:
+                        message.sender === "user" ? "flex-end" : "flex-start",
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        maxWidth: "70%",
+                        p: 2,
+                        borderRadius: 2,
+                        backgroundColor:
+                          message.sender === "user" ? "#007bff" : "#2a2a2a",
+                        color: "#fff",
+                        border:
+                          message.sender === "ai"
+                            ? "1px solid #343434"
+                            : "none",
+                      }}
+                    >
+                      <Typography variant="body2">{message.text}</Typography>
+                    </Box>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+
+              {messages.length === 0 && (
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    height: "100%",
+                    color: "#888",
+                  }}
+                >
+                  <Typography variant="body1">
+                    Start a conversation with your AI assistant...
+                  </Typography>
+                </Box>
+              )}
+            </Box>
+
+            {/* Chat input at bottom */}
+            <Box
+              sx={{
+                p: 2,
+                borderTop: "1px solid #343434",
+                backgroundColor: "",
+              }}
+            >
+              <Box sx={{ display: "flex", alignItems: "flex-end", gap: 1 }}>
+                <IconButton
+                  sx={{
+                    color: "#fff",
+                    backgroundColor: "#111",
+                    border: "1px solid #343434",
+                    // borderRadius: 2,
+                    p: 1.8,
+                    "&:hover": {
+                      backgroundColor: "#3a3a3a",
+                    },
+                  }}
+                >
+                  <AddDoc />
+                </IconButton>
+
+                <TextField
+                  fullWidth
+                  placeholder="Type your message..."
+                  variant="outlined"
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  onKeyPress={handleKeyPress}
+                  sx={{
+                    "& .MuiOutlinedInput-root": {
+                      // borderRadius: 2,
+                      backgroundColor: "#111",
+                      color: "#fff",
+                      border: "1px solid #343434",
+                      "&:hover": {
+                        borderColor: "#555",
+                      },
+                      "&.Mui-focused": {
+                        borderColor: "#007bff",
+                      },
+                      "& fieldset": {
+                        border: "none",
+                      },
+                    },
+                    "& .MuiInputBase-input": {
+                      color: "#fff",
+                      "&::placeholder": {
+                        color: "#888",
+                        opacity: 1,
+                      },
+                    },
+                  }}
+                />
+
+                <IconButton
+                  onClick={handleSendMessage}
+                  sx={{
+                    color: "#fff",
+                    backgroundColor: "#007bff",
+                    // borderRadius: 2,
+                    p: 1.8,
+                    "&:hover": {
+                      backgroundColor: "#0056b3",
+                    },
+                  }}
+                >
+                  <SendMsgIcon />
+                </IconButton>
+              </Box>
+            </Box>
           </Box>
         </Grid>
         <Grid size={{ xs: 12, md: 2 }}>
